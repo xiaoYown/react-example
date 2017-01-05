@@ -7,6 +7,11 @@ var path				=	require('path'),
 
 var plugins = [
 	// new webpack.optimize.OccurenceOrderPlugin(),
+	new webpack.DefinePlugin({
+		'process.env': {
+			NODE_ENV: JSON.stringify('development')
+		}
+	}),
 	new webpack.NoErrorsPlugin(),
 	new webpack.HotModuleReplacementPlugin()
 ];

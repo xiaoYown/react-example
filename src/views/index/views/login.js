@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import cookie from 'react-cookie';
-import { saveCookie, getCookie, removeCookie, signOut } from 'tools/client';
+import { saveCookie, getCookie, removeCookie } from 'tools/client';
 
 const login = React.createClass({
 	login(){
 		console.log('login success');
 		saveCookie('session', this.refs.userId.value);
-		this.props.router.push({ pathname: '/' });
-	},
-	signOut(){
-		console.log('sign out success');
-		signOut();
 		this.props.router.push({ pathname: '/' });
 	},
 	render(){
@@ -27,20 +22,16 @@ const login = React.createClass({
 				<button onClick={this.login} >Login</button>
 			</div>
 		);
-		const signOut = (
-			<div className="login-info">
-				<button onClick={this.signOut} >Sigin out</button>
-			</div>
-		);
 		const Content = React.createClass({
 			render(){
-				if( !getCookie('session') )
-					return login
-				return signOut
+				return login
 			}
 		});
 		return(
 			<section className="login-wrap">
+				<div>
+					<h3>about page</h3>
+				</div>
 				<Content />
 			</section>
 		)

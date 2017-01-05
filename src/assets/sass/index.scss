@@ -8,8 +8,11 @@
     }
 }
 .nav-index{
+    position: relative;
     width: 100%;
+    padding: 10px 0;
     .nav-item{
+        color: #fff;
         display: inline-block;
         vertical-align: top;
         padding: 0 20px;
@@ -17,8 +20,14 @@
         line-height: 30px;
         background-color: #999;
          &.active, &:hover{
-            color: #fff;
             background-color: #444;
+        }
+    }
+    .nav-login{
+        position: absolute;
+        right: 0;
+        &:hover{
+            cursor: pointer;
         }
     }
 }
@@ -55,5 +64,26 @@
         height: 30px;
         margin-left: 20px;
         border: 1px solid #999;
+    }
+}
+
+/* aside */
+.template-area{
+    padding-left: 200px;
+}
+.aside-container{
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+    margin-left: -200px;
+    line-height: 30px;
+    .aside-item{
+        padding-left: 20px;
+        border-bottom: 1px solid #999;
+        &:hover{
+            cursor: pointer;
+            color: #fff;
+            background-color: #777;
+        }
     }
 }

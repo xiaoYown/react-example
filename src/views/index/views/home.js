@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-const home = React.createClass({
+class home extends React.Component {
 	render(){
 		return(
-			<h3>home page</h3>
+			<section className="home-wrap">
+				<h3>home page</h3>
+			</section>
 		)
 	}
-});
+};
 
 export default home

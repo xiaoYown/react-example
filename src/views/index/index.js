@@ -11,7 +11,7 @@ import { getCookie } from 'tools/client';
 require('sass/base.scss');
 require('sass/index.scss');
 
-const routers = React.createClass({
+const Index = React.createClass({
 	//1.创建阶段
     getDefaultProps:function() {
         console.log("getDefaultProps");
@@ -30,13 +30,13 @@ const routers = React.createClass({
 	render() {
 		return (
 			<div className="index-wrap">
-				<h3>root</h3>
 				<Indexnav />
 				{this.props.children}
 			</div>
 		)
 	}
 });
+
 // 权限判断
 const requireAuth = (nextState, replace) => {
     if (!getCookie('session')) {
@@ -44,16 +44,20 @@ const requireAuth = (nextState, replace) => {
     }
 };
 
-render((
+const routers = (
 	<App>
 		<Router history={ hashHistory }>
-			<Route path="/" component={ routers }>
+			<Route path="/" component={ Index }>
 				<IndexRoute component={ home } onEnter={ requireAuth }/>
 				<Route path="/login" component={ login }/>
 				<Route path="/about" component={ about } onEnter={ requireAuth }/>
 			</Route>
 		</Router>
 	</App>
-	),
+)
+
+
+render(
+	routers,
 	document.getElementById('page_index')
 );

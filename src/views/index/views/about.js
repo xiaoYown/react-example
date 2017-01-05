@@ -1,11 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Aside } from '../mixin';
 
-const about = React.createClass({
+class about extends React.Component {
+	constructor(props) {
+		super(props);
+		this.list = [1,2,3,4];
+	}
 	render(){
 		return(
-			<h3>about page</h3>
+			<section className="about-wrap">
+				<h3>about page</h3>
+				<Aside list={ this.list }/>
+			</section >
 		)
 	}
-});
+};
 
 export default about

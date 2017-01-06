@@ -32,7 +32,7 @@ exports.cssLoaders = function (options) {
 
 	return {
 		css:      generateLoaders(['css']),
-		postcss:  generateLoaders(['css']),
+		postcss:  generateLoaders(['css', 'postcss']),
 		less:     generateLoaders(['css', 'less']),
 		sass:     generateLoaders(['css', 'sass']), // ?indentedSyntax
 		scss:     generateLoaders(['css', 'sass']),

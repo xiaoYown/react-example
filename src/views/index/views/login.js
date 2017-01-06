@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import cookie from 'react-cookie';
 import { saveCookie, getCookie, removeCookie } from 'tools/client';
 
-const login = React.createClass({
+class Login extends React.Component {
+	constructor(props){
+		super(props);
+		this.login = this.login.bind(this);
+	}
 	login(){
 		console.log('login success');
 		saveCookie('session', this.refs.userId.value);
 		this.props.router.push({ pathname: '/' });
-	},
+	}
 	render(){
 		const login = (
 			<div className="login-info">
@@ -36,6 +40,6 @@ const login = React.createClass({
 			</section>
 		)
 	}
-});
+};
 
-export default login
+export default Login

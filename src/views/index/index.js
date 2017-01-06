@@ -7,25 +7,31 @@ import { home, login, about } from './views';
 import { Indexnav } from './mixin';
 
 import { getCookie } from 'tools/client';
+import jQuery from 'jquery';
 
 require('sass/base.scss');
 require('sass/index.scss');
 
-const Index = React.createClass({
-	//1.创建阶段
-    getDefaultProps:function() {
-        console.log("getDefaultProps");
-        return {};
-    },
+global.jQuery = global.$ = jQuery;
+
+class Index extends React.Component {
+	constructor(props){
+		super(props);
+	}
+	//1.创建阶段( getDefaultProps )
+    // getDefaultProps() {
+    //     console.log("getDefaultProps");
+    //     return {};
+    // }
     //2.实例化阶段
-    getInitialState:function() {
-        console.log("getInitialState");
-        return {};
-    },
+    // getInitialState() {
+    //     console.log("getInitialState");
+    //     return {};
+    // }
+
     //render之前调用，业务逻辑都应该放在这里，如对state的操作等
-    componentWillMount:function() {
-        console.log("componentWillMount");
-    },
+    componentWillMount() {
+    }
     //渲染并返回一个虚拟DOM
 	render() {
 		return (
@@ -35,7 +41,7 @@ const Index = React.createClass({
 			</div>
 		)
 	}
-});
+};
 
 // 权限判断
 const requireAuth = (nextState, replace) => {

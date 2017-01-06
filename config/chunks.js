@@ -9,6 +9,12 @@ var chunks = [
     },
     {
         node_module: true,
+        name: 'jquery/',
+        filename: 'jquery.js',
+        chunks: Infinity
+    },
+    {
+        node_module: true,
         name: 'vendor'
     },
 ];

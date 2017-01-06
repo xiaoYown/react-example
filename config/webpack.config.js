@@ -71,40 +71,8 @@ module.exports = {
 	postcss: [ require('autoprefixer') ],
 		node: {
 		fs: 'empty'
-	}
-	/*,
-	externals: {
-		"$":"$"
-	}*/
+	},
+	// externals:{
+    //     'jquery': 'window.jQuery',
+    // }
 };
-
-/*if( isPro ){
-  // module.exports.devtool = '#source-map'; // 生成对应打包的.map文件，表示当前文件位置
-  module.exports.plugins = [
-    new HtmlWebpackPlugin({
-      // favicon:'./src/img/favicon.ico',       //favicon路径
-      filename: __dirname + '/dist/index.html',             //生成的html存放路径，相对于 path
-      template: __dirname + '/index.html',                  //html模板路径
-      inject:true,                                          //允许插件修改哪些内容，包括head与body
-      hash:true,                                            //为静态资源生成hash值
-      minify:{                                              //压缩HTML文件
-          removeComments:true,                              //移除HTML中的注释
-          collapseWhitespace:false                          //删除空白符与换行符
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
-    ,
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new ExtractTextPlugin("css/[name].css")                 //单独使用style标签加载css并设置其路径
-  ];
-  module.exports.module.loaders.push({
-    test: /\.scss$/,
-    // loader: 'style!css!sass'       // 样式与html不分离
-    // or loaders: ['style', 'css', 'sass']
-    loader: ExtractTextPlugin.extract('style', 'css!sass')
-  });
-}*/

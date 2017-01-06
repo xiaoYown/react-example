@@ -1,7 +1,5 @@
 /* index 通用 */
 .index-wrap{
-    width: 800px;
-    margin: 0 auto;
     &>h3{
         font-size: 30px;
         text-align: center;
@@ -9,18 +7,18 @@
 }
 .nav-index{
     position: relative;
-    width: 100%;
-    padding: 10px 0;
+    padding: 20px 20px 0 20px;
+    box-shadow: 0 10px 20px #ddd;
     .nav-item{
-        color: #fff;
         display: inline-block;
         vertical-align: top;
+        font-size: 20px;
+        line-height: 40px;
         padding: 0 20px;
-        margin-right: 10px;
-        line-height: 30px;
-        background-color: #999;
-         &.active, &:hover{
-            background-color: #444;
+        box-sizing: border-box;
+        &.active, &:hover{
+            color: #56aaff;
+            border-bottom: 2px solid #56aaff;
         }
     }
     .nav-login{
@@ -33,9 +31,6 @@
 }
 
 /* login */
-.login-wrap{
-    
-}
 .login-info{
     padding-top: 20px;
     button{
@@ -68,22 +63,47 @@
 }
 
 /* aside */
+.aside-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    line-height: 30px;
+    .aside-container{
+        border-right: 1px solid #999;
+    }
+    .aside-item{
+        span{
+            display: block;
+            padding-left: 20px;
+            border-bottom: 1px solid #999;
+            &:hover{
+                cursor: pointer;
+                color: #fff;
+                background-color: #777;
+            }
+        }
+    }
+    .aside-info{
+        height: 100px;
+        background-color: #ccc;
+    }
+}
+/* about */
+.about-wrap{
+    padding-top: 20px;
+    margin: 0 auto;
+}
 .template-area{
+    position: relative;
     padding-left: 200px;
 }
-.aside-container{
-    display: inline-block;
-    vertical-align: top;
-    width: 200px;
-    margin-left: -200px;
-    line-height: 30px;
-    .aside-item{
-        padding-left: 20px;
-        border-bottom: 1px solid #999;
-        &:hover{
-            cursor: pointer;
-            color: #fff;
-            background-color: #777;
-        }
+.grid-container{
+    position: relative;
+    width: 100%;
+    div{
+        position: absolute;
+        width: 50px;
+        height: 50px;
     }
 }

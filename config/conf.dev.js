@@ -12,6 +12,11 @@ var plugins = [
 			NODE_ENV: JSON.stringify('development')
 		}
 	}),
+	new webpack.ProvidePlugin({
+		$: "jquery",
+		jQuery: "jquery",
+		"window.jQuery": "jquery"
+	}),
 	new webpack.NoErrorsPlugin(),
 	new webpack.HotModuleReplacementPlugin()
 ];

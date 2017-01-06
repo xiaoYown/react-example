@@ -62,6 +62,7 @@ var newWebpack = merge(baseWebpack, {
 			}
 		}),
 		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.DedupePlugin(),
 		new ExtractTextPlugin(utils.assetsPath('css/[name].css?[chunkhash]')), 	//单独使用style标签加载css并设置其路径
 	].concat(plugins)
 });

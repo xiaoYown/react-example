@@ -14,9 +14,11 @@ class Aside extends React.Component {
         list: React.PropTypes.array.isRequired
     }
     collapse(type){
-        console.log(this.refs[type])
-        if( type == this.state.activeEl )
+        if( type == this.state.activeEl ){
+            const isActive = /hide/.test(this.refs[this.state.activeEl].className);
+            this.refs[this.state.activeEl].className = isActive ? 'aside-info' : 'aside-info hide'
             return;
+        }
         if( this.state.activeEl )
             this.refs[this.state.activeEl].className += ' hide';
         this.state.activeEl = type;

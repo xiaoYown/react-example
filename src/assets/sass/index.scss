@@ -93,6 +93,29 @@
 .about-wrap{
     padding-top: 20px;
     margin: 0 auto;
+    .layout{
+        position: relative;
+        .react-grid-item{
+            background-color: rgba(0,0,0,0.5);
+            transition: all .2s;
+        }
+        .react-draggable-dragging{
+            transition: none;
+        }
+        .react-grid-placeholder{
+            background-color: rgba(0,0,0,0.2);
+        }
+        .react-resizable-handle{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            &:hover{
+                cursor: se-resize;
+            }
+        }
+    }
 }
 .template-area{
     position: relative;

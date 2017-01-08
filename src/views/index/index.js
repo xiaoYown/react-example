@@ -12,7 +12,7 @@ import jQuery from 'jquery';
 require('sass/base.scss');
 require('sass/index.scss');
 
-global.jQuery = global.$ = jQuery;
+// global.jQuery = global.$ = jQuery;
 
 class Index extends React.Component {
 	constructor(props){

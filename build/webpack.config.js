@@ -1,5 +1,6 @@
 var webpack =	require('webpack'),
 	path 	=	require('path'),
+	config  = 	require('../config'),
 	glob 	=	require('glob'),
 	utils	=	require('./utils'),
 // 帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles，只需要在你的 webpack 配置文件中如下配置：
@@ -19,17 +20,27 @@ function getEntry(globPath) {
 	});
 	return entries;
 }
-var entries = getEntry("./src/views/*/*.js"); // 获得入口js文件
+var entries = getEntry("./src/views/*/*.jsx"); // 获得入口js文件
 
 module.exports = {
 	entry: entries,
 	output: {
-		path: isPro ? __dirname + '/dist' : '/',
+		path: config.build.assetsRoot,
 		// [name] 替换成chunk名称， [hash] 替换成对应chunk 的 hash 值, 解决hash的方式: 静态资源引入采用 import 方式
 		filename: '[name].js', // 使用chunkhash : '[name]-[hash].js'
-		publicPath: isPro ? './' : '/' // 文件引入路径
+		publicPath: isPro ? config.build.assetsPublicPath : config.dev.assetsPublicPath // 文件引入路径
 	},
 	module: {
+		preLoaders: [
+			{
+				test: /\.js[x]$/,
+					loader: 'eslint',
+					include: [
+					path.join(__dirname, '../src')
+				],
+				exclude: /node_modules/
+			}
+		],
 		loaders: [
 			{
 				test: /\.js[x]?$/,

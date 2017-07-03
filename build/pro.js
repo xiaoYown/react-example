@@ -1,9 +1,11 @@
 require('shelljs/global'); // can replace unix shell scripts on nodejs
 
 var path    =	require('path'),
+	config 	=	require('../config'),
 	ora     =	require('ora'),
 	webpack =	require('webpack');
 
+if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.build.env.NODE_ENV);
 
 var webpackMerge = require('./conf.pro');
 
@@ -16,7 +18,7 @@ console.log([
 var spinner = ora('building for production...');
 spinner.start();
 
-var assetsPath = path.join(path.resolve(__dirname, '../dist'), 'static');
+var assetsPath = path.join(path.resolve(__dirname, '../dist'), config.build.assetsSubDirectory);
 rm('-rf', assetsPath);
 mkdir('-p', assetsPath);
 cp('-R', 'static/', assetsPath);

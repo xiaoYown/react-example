@@ -3,13 +3,13 @@ var path 				 =	require('path'),
 	webpack 			 =	require('webpack'),
 	webpackDevMiddleware = 	require('webpack-dev-middleware'),
 	webpackHotMiddleware =  require('webpack-hot-middleware'),
-	// proxyMiddleware 	 = 	require('http-proxy-middleware'),
-	config 				 =	require('./config'),
+	proxyMiddleware 	 = 	require('http-proxy-middleware'),
+	config 				 =	require('../config'),
 	webpackMerge 		 = 	require('./conf.dev'),
 	baseWebpack 		 =	require('./webpack.config');
 
 
-var port = config.port;
+var port = require('../config/config').port;
 
 var app = express();
 
@@ -30,21 +30,14 @@ compiler.plugin('compilation', function(compilation){
 	});
 });
 // proxy api requests
-// var proxyTable = {
-// 	'/api':{
-// 		target: config.api,
-// 		pathRewrite:{
-// 			'^/api':''
-// 		}
-// 	}
-// };
-// Object.keys(proxyTable).forEach(function (context) {
-// 	var options = proxyTable[context]
-// 	if (typeof options === 'string') {
-// 		options = { target: options }
-// 	}
-// 	app.use(proxyMiddleware(context, options))
-// });
+var proxyTable = config.dev.proxyTable;
+Object.keys(proxyTable).forEach(function (context) {
+	var options = proxyTable[context]
+	if (typeof options === 'string') {
+		options = { target: options }
+	}
+	app.use(proxyMiddleware(context, options))
+});
 app.use(require('connect-history-api-fallback')());
 app.use(devMiddleware);
 app.use(hotMiddleware);

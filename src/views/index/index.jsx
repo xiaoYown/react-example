@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 
 import AppCmpt from '../App.jsx';
 import homeCmpt from './views/home.jsx';
+import reduxCmpt from './views/redux.jsx';
 import loginCmpt from './views/login.jsx';
 import aboutCmpt from './views/about.jsx';
 import IndexnavCmpt from './mixin/nav.jsx';
@@ -58,6 +59,7 @@ const routers = (
       <Route path="/" component={ Index }>
         <IndexRoute component={ homeCmpt } onEnter={ requireAuth }/>
         <Route path="/login" component={ loginCmpt }/>
+        <Route path="/redux" component={ reduxCmpt }/>
         <Route path="/about" component={ aboutCmpt } onEnter={ requireAuth }/>
       </Route>
     </Router>

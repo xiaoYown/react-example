@@ -70,13 +70,14 @@ module.exports = {
 			'config'	: path.resolve(__dirname, '../config'),
 			'js'		: path.resolve(__dirname, '../src/assets/js'),
 			'sass'		: path.resolve(__dirname, '../src/assets/sass'),
+			'Store'		: path.resolve(__dirname, '../src/store'),
 			'components': path.resolve(__dirname, '../src/components'),
 			'ui'		: path.resolve(__dirname, '../src/components/ui'),
 			'plugin'	: path.resolve(__dirname, '../src/plugin'),
 			'Views'		: path.resolve(__dirname, '../src/views'),
 			'utils'		: path.resolve(__dirname, '../src/utils'),
 			'tools'		: path.resolve(__dirname, '../src/tools'),
-			'dist'		: path.resolve(__dirname, '../dist')
+			'dist'		: path.resolve(__dirname, '../dist'),
 		}
 	},
 	postcss: [ require('autoprefixer') ],

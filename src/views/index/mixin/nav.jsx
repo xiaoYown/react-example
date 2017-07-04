@@ -13,6 +13,7 @@ const nav = React.createClass({
       <nav className="nav-index">
         <IndexLink className="nav-item" activeClassName="active" to="/">home</IndexLink>
         <Link className="nav-item" activeClassName="active" to="/about">about</Link>
+        <Link className="nav-item" activeClassName="active" to="/redux">redux</Link>
         { LoginButton }
       </nav>
     );

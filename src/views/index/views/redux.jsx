@@ -1,29 +1,47 @@
 import React, { Component } from 'react';
-import { createStore } from 'redux';
-import Counter from '../mixin/counter/Counter.jsx';
-import counter from 'Store/index/counter';
+import { createStore, bindActionCreators } from 'redux';
+import { connect } from "react-redux";
+import store from './Redux/store';
 
 const store = createStore(counter);
-store.subscribe(listener);
-function listener () {
-  console.log(store.getState());
-}
+
+store.subscribe(() => { //监听state变化
+    console.log(store.getState())
+});
+
+
 class Cal extends React.Component {
-  // constructor (props) {
-  //   super(props);
-  // }
+  constructor (props) {
+    super(props);
+    this.state = {
+    };
+  }
+  componentDidMount () {
+		let {ACTIONS} = this.props;
+		ACTIONS.get_list();
+	}
+  change () {
+    store.dispatch({type: 'GET_LIST'})
+  }
   render () {
     return (
       <section className="login-wrap">
-        <p>{store.getState()}</p>
-        <Counter
-          value={store.getState()}
-          onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-          onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-        />
+        <button onClick=""></button>
       </section>
     );
   }
 };
+function mapStateToProps(state){
+	const {list} = state.homeList;//
+	return {
+		_list:list
+	};
+}; 
 
-export default Cal;
+function mapDispatchToProps(dispatch){
+	return {
+		ACTIONS:bindActionCreators(actions,dispatch)
+	};
+};
+export default  connect(mapStateToProps,mapDispatchToProps)(List);
+// export default Cal;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import cookie from 'react-cookie';
+import PropTypes from 'prop-types';
 import { saveCookie } from 'tools/client';
 
 class Login extends React.Component {
@@ -26,11 +27,11 @@ class Login extends React.Component {
         <button onClick={this.login} >Login</button>
       </div>
     );
-    const ContentCmpt = React.createClass({
+    class ContentCmpt extends React.Component {
       render () {
         return login;
       }
-    });
+    };
     return (
       <section className="login-wrap">
         <div>
@@ -41,5 +42,16 @@ class Login extends React.Component {
     );
   }
 };
+
+// Login.propsTypes = {
+//   router: PropTypes.object,
+//   children: PropTypes.object,
+//   params: PropTypes.object,
+//   route: PropTypes.object,
+//   routes: PropTypes.object,
+//   location: PropTypes.object,
+//   routeParams: PropTypes.object,
+//   login: PropTypes.func
+// };
 
 export default Login;

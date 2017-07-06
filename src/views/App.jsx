@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const App = React.createClass({
+class App extends Component {
   render () {
     return (
       <div className="content">
@@ -8,6 +8,6 @@ const App = React.createClass({
       </div>
     );
   }
-});
+};
 
 export default App;

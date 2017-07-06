@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router';
 import { getCookie, signOut } from 'tools/client';
 
-const nav = React.createClass({
+class nav extends Component {
   signOut () {
     signOut();
     window.location.href = '/';
-  },
+  }
   render () {
     const LoginButton = !getCookie('session') ? (<Link className="nav-item nav-login" to="/login">login</Link>) : (<Link className="nav-item nav-login" onClick={ this.signOut }>sign out</Link>);
     return (
@@ -18,6 +18,6 @@ const nav = React.createClass({
       </nav>
     );
   }
-});
+};
 
 export default nav;

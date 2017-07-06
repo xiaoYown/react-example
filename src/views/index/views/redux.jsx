@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { createStore, bindActionCreators } from 'redux';
-// import { connect } from "react-redux";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import store from 'Redux/store';
 import ACTIONS from 'Redux/actions';
 
-export default class Counter extends Component {
+class Counter extends Component {
   constructor (props) {
     super(props);
     // 获取初始状态
-    console.log(store.getState());
     this.state = {
       value: store.getState().value
     };
@@ -17,10 +17,10 @@ export default class Counter extends Component {
     // 监听 store 变化
     store.subscribe(this.watchStore.bind(this));
   }
-  componentWillUnmount () {
-    // 对 store 变化取消监听
-    store.unsubscribe(this.watchStore.bind(this));
-  }
+  // componentWillUnmount () {
+  // 对 store 变化取消监听
+  // store.unsubscribe(this.watchStore.bind(this));
+  // }
   // 监听回调函数，当 store 变化后执行
   watchStore () {
     // 回调函数中重新设置状态
@@ -55,4 +55,7 @@ export default class Counter extends Component {
   }
 }
 // export default  connect(mapStateToProps,mapDispatchToProps)(List);
-// export default Cal;
+Counter.propTypes = {
+  value: PropTypes.number
+};
+export default Counter;

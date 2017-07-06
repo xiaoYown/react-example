@@ -68,7 +68,7 @@ module.exports = {
 		alias: {
 			'src'		: path.resolve(__dirname, '../src'),
 			'config'	: path.resolve(__dirname, '../config'),
-			'Redux'		: path.resolve(__dirname, '../Redux'),
+			'Redux'		: path.resolve(__dirname, '../src/Redux'),
 			'js'		: path.resolve(__dirname, '../src/assets/js'),
 			'sass'		: path.resolve(__dirname, '../src/assets/sass'),
 			'components': path.resolve(__dirname, '../src/components'),

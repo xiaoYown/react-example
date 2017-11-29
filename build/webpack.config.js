@@ -77,6 +77,7 @@ module.exports = {
 			'Views'		: path.resolve(__dirname, '../src/views'),
 			'utils'		: path.resolve(__dirname, '../src/utils'),
 			'tools'		: path.resolve(__dirname, '../src/tools'),
+			'libraries'		: path.resolve(__dirname, '../src/libraries'),
 			'dist'		: path.resolve(__dirname, '../dist'),
 		}
 	},

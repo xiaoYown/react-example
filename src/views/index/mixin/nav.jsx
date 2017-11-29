@@ -14,6 +14,7 @@ class nav extends Component {
         <IndexLink className="nav-item" activeClassName="active" to="/">home</IndexLink>
         <Link className="nav-item" activeClassName="active" to="/about">about</Link>
         <Link className="nav-item" activeClassName="active" to="/redux">redux</Link>
+        <Link className="nav-item" activeClassName="active" to="/d3">d3</Link>
         { LoginButton }
       </nav>
     );

@@ -12,7 +12,7 @@ d3Chart.create = function(el, props, state) {
   var svg = d3.select("svg"),
       w = parseInt(svg.style("width")),
       h = parseInt(svg.style("height")),
-      n = 1000,
+      n = 100,
       nodes = d3.range(n).map(function(i) { return {index: i}; }),
       links = d3.range(n).map(function(i) { return {source: i, target: (i + 3) % n}; });
   

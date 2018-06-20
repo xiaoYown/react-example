@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import AsideCmpt from '../mixin/aside.jsx';
+// import AsideCmpt from '../mixin/aside.jsx';
 
 // import { ReactGridLayout, width } from 'react-grid-layout';
-var WidthProvider = require('react-grid-layout').WidthProvider;
-var ReactGridLayoutCmpt = require('react-grid-layout');
-ReactGridLayoutCmpt = WidthProvider(ReactGridLayoutCmpt);
-
 // const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
 
 class About extends React.Component {
@@ -17,8 +13,8 @@ class About extends React.Component {
       {name: 2, type: 'type_3'},
       {name: 3, type: 'type_4'}
     ];
-    this.layout = { x: 4, y: 0, w: 1, h: 2 };
-    this.saveGrid = this.saveGrid.bind(this);
+    // this.layout = { x: 4, y: 0, w: 1, h: 2 };
+    // this.saveGrid = this.saveGrid.bind(this);
   }
   shouldComponentUpdate () {
     return false; // 告诉react这个component我们打算自己瞎搞，叫它别碰
@@ -29,7 +25,7 @@ class About extends React.Component {
   }
   saveGrid () {
     var x = this.layout.x + 1;
-    this.layout = { x: x, y: 0, w: 1, h: 2 };
+    // this.layout = { x: x, y: 0, w: 1, h: 2 };
   }
   render () {
     // var layout = [
@@ -47,25 +43,10 @@ class About extends React.Component {
     //   <div key="5" data-grid={{w: 2, h: 3, x: 8, y: 0}}><span className="text">5</span></div>
     // </ResponsiveReactGridLayout>
     // var layouts = {};
+    // <AsideCmpt list={ this.list }/>
     return (
       <section className="about-wrap">
         <div className="template-area">
-          <AsideCmpt list={ this.list }/>
-          <ReactGridLayoutCmpt className="layout" cols={12} colWidth={30} rowHeight={30} width={1200}>
-            <div key="a" data-grid={{x: 0, y: 0, w: 1, h: 2, static: true}}> a
-              <div className="item"></div>
-            </div>
-            <div key="b" data-grid={{x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4}}> b
-              <div className="item"></div>
-            </div>
-            <div key="c" data-grid={{x: 4, y: 0, w: 1, h: 2}}> c
-              <div className="item"></div>
-            </div>
-            <div key="d" ref="d" data-grid={this.layout}> d
-              <div className="item"></div>
-            </div>
-          </ReactGridLayoutCmpt>
-          <button className="saveGrid" onClick={this.saveGrid}>保存选项</button>
         </div>
       </section>
     );

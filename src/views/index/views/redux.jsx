@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { createStore, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import store from 'Redux/store';
-import ACTIONS from 'Redux/actions';
+import store from '@/redux/store';
+import ACTIONS from '@/redux/actions';
 
 class Counter extends Component {
   constructor (props) {
@@ -46,10 +46,10 @@ class Counter extends Component {
     return (
       <div className="counter">
         <div>
-          <button onClick = { this.increase.bind(this) }>+</button>
-          <button onClick = { this.decrease.bind(this) }>-</button>
+          <button onClick={this.increase.bind(this)}>+</button>
+          <button onClick={this.decrease.bind(this)}>-</button>
         </div>
-        <span>当前的值为:{ this.state.value }</span>
+        <span>当前的值为:{this.state.value}</span>
       </div>
     );
   }

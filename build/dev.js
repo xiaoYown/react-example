@@ -1,13 +1,12 @@
-var path 				 =	require('path'),
-	express 			 =	require('express'),
-	webpack 			 =	require('webpack'),
-	webpackDevMiddleware = 	require('webpack-dev-middleware'),
-	webpackHotMiddleware =  require('webpack-hot-middleware'),
-	proxyMiddleware 	 = 	require('http-proxy-middleware'),
-	config 				 =	require('../config'),
-	webpackMerge 		 = 	require('./conf.dev'),
-	baseWebpack 		 =	require('./webpack.config');
-
+const path = require('path');
+const express =	require('express');
+const webpack =	require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const proxyMiddleware = require('http-proxy-middleware');
+const config =	require('../config');
+const webpackMerge = require('./conf.dev');
+const baseWebpack =	require('./webpack.config');
 
 var port = require('../config/config').port;
 
@@ -42,9 +41,8 @@ app.use(require('connect-history-api-fallback')());
 app.use(devMiddleware);
 app.use(hotMiddleware);
 
-// var staticPath = '/static';	//path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 
-// app.use(staticPath, express.static('./static'));
+app.use('/static', express.static('./static'));
 
 module.exports = app.listen(port, function(err){
 	console.log('---------------------------------------------------------------');

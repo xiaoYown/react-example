@@ -1,17 +1,17 @@
-var webpack =	require('webpack'),
-	path 	=	require('path'),
-	config  = 	require('../config'),
-	glob 	=	require('glob'),
-	utils	=	require('./utils'),
-// 帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles，只需要在你的 webpack 配置文件中如下配置：
+var webpack = require('webpack'),
+	path = require('path'),
+	config = require('../config'),
+	glob = require('glob'),
+	utils = require('./utils'),
+	// 帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles，只需要在你的 webpack 配置文件中如下配置：
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
-// 搭配html-webapck-plugin使用,将css作为chunk追加到对应html中
+	// 搭配html-webapck-plugin使用,将css作为chunk追加到对应html中
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var isPro = process.env.NODE_ENV == 'production';
 
 function getEntry(globPath) {
-  	var entries = {}, basename;
+	var entries = {}, basename;
 	glob.sync(globPath).forEach(function (entry) {
 		basename = path.basename(entry, path.extname(entry));
 		entries[basename] = [];
@@ -34,8 +34,8 @@ module.exports = {
 		preLoaders: [
 			{
 				test: /\.js[x]$/,
-					loader: 'eslint',
-					include: [
+				loader: 'eslint',
+				include: [
 					path.join(__dirname, '../src')
 				],
 				exclude: /node_modules/
@@ -44,7 +44,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js[x]?$/,
-				exclude:  /node_modules/,
+				exclude: /node_modules/,
 				loader: 'babel-loader',
 				query: {
 					presets: ['react']
@@ -66,26 +66,16 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
-			'src'		: path.resolve(__dirname, '../src'),
-			'config'	: path.resolve(__dirname, '../config'),
-			'Redux'		: path.resolve(__dirname, '../src/Redux'),
-			'js'		: path.resolve(__dirname, '../src/assets/js'),
-			'sass'		: path.resolve(__dirname, '../src/assets/sass'),
-			'components': path.resolve(__dirname, '../src/components'),
-			'ui'		: path.resolve(__dirname, '../src/components/ui'),
-			'plugin'	: path.resolve(__dirname, '../src/plugin'),
-			'Views'		: path.resolve(__dirname, '../src/views'),
-			'utils'		: path.resolve(__dirname, '../src/utils'),
-			'tools'		: path.resolve(__dirname, '../src/tools'),
-			'libraries'		: path.resolve(__dirname, '../src/libraries'),
-			'dist'		: path.resolve(__dirname, '../dist'),
+			'@': path.resolve(__dirname, '../src'),
+			'config': path.resolve(__dirname, '../config'),
+			'dist': path.resolve(__dirname, '../dist')
 		}
 	},
-	postcss: [ require('autoprefixer') ],
-		node: {
+	postcss: [require('autoprefixer')],
+	node: {
 		fs: 'empty'
-	},
+	}
 	// externals:{
-    //     'jquery': 'window.jQuery',
-    // }
+	//     'jquery': 'window.jQuery',
+	// }
 };

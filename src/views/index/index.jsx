@@ -5,16 +5,13 @@ import { render } from 'react-dom';
 import AppCmpt from '../App.jsx';
 import homeCmpt from './views/home.jsx';
 import reduxCmpt from './views/redux.jsx';
-import d3Cmpt from './views/d3.jsx';
 import loginCmpt from './views/login.jsx';
 import aboutCmpt from './views/about.jsx';
 import IndexnavCmpt from './mixin/nav.jsx';
 
-import { getCookie } from 'tools/client';
-import jQuery from 'jquery';
+import { getCookie } from '@/utils/client';
 
-require('sass/base.scss');
-require('sass/index.scss');
+require('@/assets/sass/index/main.scss');
 
 // global.jQuery = global.$ = jQuery;
 
@@ -62,7 +59,6 @@ const routers = (
         <Route path="/login" component={ loginCmpt }/>
         <Route path="/redux" component={ reduxCmpt }/>
         <Route path="/about" component={ aboutCmpt } onEnter={ requireAuth }/>
-        <Route path="/d3" component={ d3Cmpt }/>
       </Route>
     </Router>
   </AppCmpt>

@@ -1,14 +1,19 @@
-// see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path');
+const path = require('path');
+function timeformat(time) {
+  return [time.getFullYear(), time.getMonth() + 1, time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes()].join('-')
+}
 
 module.exports = {
-	build: {
+  build: {
 		env: require('./env.pro'),
 		favicon: path.resolve(__dirname, '../src/assets/images/favicon.ico'),
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsSubDirectory: 'static',
 		assetsPublicPath: '/',
-		productionSourceMap: false
+		productionSourceMap: false,
+		cacheBusting: true,
+		cssSourceMap: true,
+		time: timeformat(new Date())
 	},
 	dev: {
 		env: require('./env.dev'),
@@ -17,18 +22,12 @@ module.exports = {
 		assetsSubDirectory: 'static',
 		assetsPublicPath: '/',
 		proxyTable: {
-			'/api': {
+			'/api':{
 				target: require('./config').api,
-				pathRewrite: {
+				pathRewrite:{
 				    '^/api': ''
 				}
 			}
-		},
-		// CSS Sourcemaps off by default because relative paths are "buggy"
-		// with this option, according to the CSS-Loader README
-		// (https://github.com/webpack/css-loader#sourcemaps)
-		// In our experience, they generally work as expected,
-		// just be aware of this issue when enabling this option.
-		cssSourceMap: false
-	}
+    }
+  }
 }

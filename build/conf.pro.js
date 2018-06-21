@@ -1,11 +1,11 @@
-var path                =	require('path'),
-	utils               =	require('./utils'),
-	webpack             =	require('webpack'),
-	merge               =	require('webpack-merge'),
-	config 				= 	require('../config'),
-	baseWebpack         =	require('./webpack.config.js'),
-	ExtractTextPlugin   =	require('extract-text-webpack-plugin'),
-	HtmlWebpackPlugin   =	require('html-webpack-plugin');
+const path =	require('path');
+const utils =	require('./utils');
+const webpack =	require('webpack');
+const merge =	require('webpack-merge');
+const config = 	require('../config');
+const baseWebpack =	require('./webpack.config.js');
+const ExtractTextPlugin =	require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin =	require('html-webpack-plugin');
 
 var plugins = [	
 	new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[chunkhash]')), 	//单独使用style标签加载css并设置其路径

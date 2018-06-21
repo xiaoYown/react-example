@@ -1,10 +1,10 @@
-var path				=	require('path'),
-	config 				= 	require('../config'),
-	webpack 			=	require('webpack'),
-	merge 				=	require('webpack-merge'),
-	HtmlWebpackPlugin 	=	require('html-webpack-plugin'),
-	utils				=	require('./utils'),
-	baseWebpack			=	require('./webpack.config');
+const path =	require('path');
+const config = 	require('../config');
+const webpack =	require('webpack');
+const merge =	require('webpack-merge');
+const HtmlWebpackPlugin =	require('html-webpack-plugin');
+const utils =	require('./utils');
+const baseWebpack =	require('./webpack.config');
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV);
 

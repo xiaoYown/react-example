@@ -1,12 +1,12 @@
-var webpack = require('webpack'),
-	path = require('path'),
-	config = require('../config'),
-	glob = require('glob'),
-	utils = require('./utils'),
-	// 帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles，只需要在你的 webpack 配置文件中如下配置：
-	HtmlWebpackPlugin = require('html-webpack-plugin'),
-	// 搭配html-webapck-plugin使用,将css作为chunk追加到对应html中
-	ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const config = require('../config');
+const glob = require('glob');
+const utils = require('./utils');
+// 帮助生成 HTML 文件，在 body 元素中，使用 script 来包含所有你的 webpack bundles，只需要在你的 webpack 配置文件中如下配置：
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 搭配html-webapck-plugin使用,将css作为chunk追加到对应html中
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var isPro = process.env.NODE_ENV == 'production';
 

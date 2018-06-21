@@ -1,4 +1,4 @@
 // 增
-export const INCREMENT = "INCREMENT";
+export const INCREMENT = 'INCREMENT';
 // 减
-export const DECREAMENT = "DECREAMENT";
+export const DECREAMENT = 'DECREAMENT';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, IndexLink } from 'react-router';
+import { BrowserRouter as Link, NavLink } from 'react-router-dom';
 import { getCookie, signOut } from '@/utils/client';
 
 class nav extends Component {
@@ -8,14 +8,12 @@ class nav extends Component {
     window.location.href = '/';
   }
   render () {
-    const LoginButton = !getCookie('session') ? (<Link className="nav-item nav-login" to="/login">login</Link>) : (<Link className="nav-item nav-login" onClick={ this.signOut }>sign out</Link>);
     return (
       <nav className="nav-index">
-        <IndexLink className="nav-item" activeClassName="active" to="/">home</IndexLink>
-        <Link className="nav-item" activeClassName="active" to="/about">about</Link>
-        <Link className="nav-item" activeClassName="active" to="/redux">redux</Link>
-        <Link className="nav-item" activeClassName="active" to="/d3">d3</Link>
-        { LoginButton }
+        <NavLink className="nav-item" activeClassName="active" exact to="/">home</NavLink>
+        <NavLink className="nav-item" activeClassName="active" to="/about">about</NavLink>
+        <NavLink className="nav-item" activeClassName="active" to="/redux">redux</NavLink>
+        <NavLink className="nav-item" activeClassName="active" to="/d3">d3</NavLink>
       </nav>
     );
   }

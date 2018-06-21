@@ -12,26 +12,42 @@ const package = require('../package.json');
 const banner =
 `[name].js v ${package.version}
 (c)2018 ${package.author}
-Released under the ${package.license} License' + '\nDate: ' + ${config.build.time}`;
+Released under the ${package.license} License
+Date: ${config.build.time}`;
 
 
 var plugins = [	
   new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[chunkhash]')), 	//单独使用style标签加载css并设置其路径
   new webpack.BannerPlugin({
     banner: banner
-    // include: new RegExp(bundleConfig.bannerFiles.join('|'))
-  })
+  }),
+  new webpack.DefinePlugin({
+    'process.env': config.build.env
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: function(module){
+      return module.context && module.context.includes('node_modules');
+    }
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest',
+    minChunks: Infinity
+  }),
+  new BundleAnalyzerPlugin()
 ];
-var pages = {
-  index: ['react', 'index', 'vendor']
-};
 Object.keys(baseWebpack.entry).forEach(function(name){
   var plugin = new HtmlWebpackPlugin({
     filename: path.resolve(__dirname, `../dist/${name}.html`),
     template: path.resolve(__dirname, `../src/pages/${name}.html`),
     favicon: config.build.favicon,
     inject: true,
-    chunks: pages[name], 		// 多文件打包引入
+    chunks: name, 		// 多文件打包引入
     minify: {
       removeComments: true,
       collapseWhitespace: true,

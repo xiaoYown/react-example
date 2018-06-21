@@ -1,69 +1,48 @@
-import React from 'react';
-// import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { render } from 'react-dom';
 
-import AppCmpt from '../App.jsx';
-import homeCmpt from './views/home.jsx';
-import reduxCmpt from './views/redux.jsx';
-import loginCmpt from './views/login.jsx';
-import aboutCmpt from './views/about.jsx';
-import IndexnavCmpt from './mixin/nav.jsx';
-
-import { getCookie } from '@/utils/client';
+import routers from './router';
 
 import '@/assets/sass/index/main.scss';
-
-// global.jQuery = global.$ = jQuery;
-
-class Index extends React.Component {
-  // constructor (props) {
-  //   super(props);
-  // }
-  // 1.创建阶段( getDefaultProps )
-  // getDefaultProps() {
-  //   console.log("getDefaultProps");
-  //   return {};
-  // }
-  // 2.实例化阶段
-  // getInitialState() {
-  //   console.log("getInitialState");
-  //   return {};
-  // }
-
-  // render之前调用，业务逻辑都应该放在这里，如对state的操作等
-  // componentWillMount () {
-  // }
-  // 渲染并返回一个虚拟DOM
-  render () {
-    return (
-      <div className="index-wrap">
-        <IndexnavCmpt />
-        {this.props.children}
-      </div>
-    );
-  }
-};
-
-// 权限判断
-const requireAuth = (nextState, replace) => {
-  if (!getCookie('session')) {
-    replace({ pathname: '/login' });
-  }
-};
-
-const routers = (
-  <Router>
-    <Index>
-      <Route exact path="/" component={ homeCmpt }/>
-      <Route path="/login" component={ loginCmpt }/>
-      <Route path="/redux" component={ reduxCmpt }/>
-      <Route path="/about" component={ aboutCmpt } onEnter={ requireAuth }/>
-    </Index>
-  </Router>
-);
 
 render(
   routers,
   document.getElementById('page_index')
 );
+// // 实例化阶段, 此时可访问 this.props(非 es6 时 createReactClass 使用)
+// getInitialState () {
+// }
+// // 设置默认的 props(非 es6 时 createReactClass 使用)
+// getDefaultProps () {
+//   console.log('get default props');
+//   return {}
+// }
+
+// // render之前调用
+// componentWillMount () {
+//   console.log('will mount');
+// }
+// // render 之后调用
+// componentDidMount () {
+//   console.log('did mount');
+// }
+// // 组件接收新的参数时调用
+// componentWillReceiveProps () {
+//   console.log('props change');
+// }
+// props 更新时, 判断是否有变化, 无时返回 false, 阻止更新 dom
+// shouldComponentUpdate (nextProps, nexState) {
+//   return nextProps.num !== nexState.num;
+// }
+// componentWillUpdata () { 组件更新前调用, 测试该方法已丢弃
+//   console.log('will update');
+// }
+// // 组件更新完成后调用
+// componentDidUpdate () {
+//   console.log('update');
+// }
+// // 组件卸载前调用
+// componentWillUnmount () {
+//   console.log('will unmount');
+//   store.unsubscribe(this.watchStore.bind(this));
+// }
+// 渲染及更新时执行, 并返回一个虚拟 DOM

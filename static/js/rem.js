@@ -112,6 +112,15 @@
 
 })(window, document);
 
+(function () {
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var body = document.querySelector('body');
+    var className = document.body.className;
+    if (className) {
+      body.className = className.replace(/s-hidden/, '');
+    }
+	});
+})();
 // function isPC () {  
 // 	var userAgentInfo = navigator.userAgent; 
 // 	var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");

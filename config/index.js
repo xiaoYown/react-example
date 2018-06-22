@@ -8,7 +8,7 @@ module.exports = {
 		env: require('./env.pro'),
 		favicon: path.resolve(__dirname, '../src/assets/images/favicon.ico'),
 		assetsRoot: path.resolve(__dirname, '../dist'),
-		assetsSubDirectory: 'static',
+		assetsSubDirectory: 'static-mb',
 		assetsPublicPath: '/',
 		productionSourceMap: false,
 		cacheBusting: true,
@@ -19,7 +19,7 @@ module.exports = {
 		env: require('./env.dev'),
 		favicon: path.resolve(__dirname, '../src/assets/images/favicon.ico'),
 		port: require('./config').port,
-		assetsSubDirectory: 'static',
+		assetsSubDirectory: 'static-mb',
 		assetsPublicPath: '/',
 		proxyTable: {
 			'/api':{

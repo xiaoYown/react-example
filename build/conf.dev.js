@@ -17,7 +17,7 @@ var plugins = [
 ];
 
 Object.keys(baseWebpack.entry).forEach(function(name){
-  // baseWebpack.entry[name] = ['./build/dev-client'].concat(baseWebpack.entry[name]);
+  baseWebpack.entry[name] = ['./build/dev-client'].concat(baseWebpack.entry[name]);
 
   var plugin = new HtmlWebpackPlugin({
     filename: name + '.html',

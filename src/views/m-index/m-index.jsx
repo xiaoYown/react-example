@@ -1,20 +1,17 @@
 import { render } from 'react-dom';
 import routers from './router';
 
+import isLogin from '@/utils/isLogin';
+
 import '@/assets/sass/index/main.scss';
 
+console.log(isLogin());
+
+// 渲染及更新时执行, 并返回一个虚拟 DOM
 render(
   routers,
   document.getElementById('page_index')
 );
-// // 实例化阶段, 此时可访问 this.props(非 es6 时 createReactClass 使用)
-// getInitialState () {
-// }
-// // 设置默认的 props(非 es6 时 createReactClass 使用)
-// getDefaultProps () {
-//   console.log('get default props');
-//   return {}
-// }
 
 // // render之前调用
 // componentWillMount () {
@@ -32,9 +29,6 @@ render(
 // shouldComponentUpdate (nextProps, nexState) {
 //   return nextProps.num !== nexState.num;
 // }
-// componentWillUpdata () { 组件更新前调用, 测试该方法已丢弃
-//   console.log('will update');
-// }
 // // 组件更新完成后调用
 // componentDidUpdate () {
 //   console.log('update');
@@ -44,4 +38,3 @@ render(
 //   console.log('will unmount');
 //   store.unsubscribe(this.watchStore.bind(this));
 // }
-// 渲染及更新时执行, 并返回一个虚拟 DOM

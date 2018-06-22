@@ -1,5 +1,5 @@
-import { getCookie } from '@/utils/client';
+import { getCookie } from '@/utils/cookie';
 
 export default function () {
-  return getCookie('session');
+  return getCookie('login_statu');
 }

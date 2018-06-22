@@ -24,7 +24,7 @@ let assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirect
 
 rm('-rf', assetsPath);
 mkdir('-p', assetsPath);
-cp('-R', 'static/', path.join(assetsPath, '../'));
+cp('-R', config.dev.assetsSubDirectory + '/', path.join(assetsPath, '../'));
 
 webpack(webpackMerge, function (err, stats) {
   spinner.stop()

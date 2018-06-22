@@ -35,7 +35,9 @@ Object.keys(proxyTable).forEach(function (context) {
 
 app.use(require('connect-history-api-fallback')({
   rewrites: [
-    { from: /\/demo(\/|$)/, to: '/demo.html' }
+    { from: /\/m\/mine(\/|$)/, to: '/m-index.html' },
+    { from: /\/m\/team(\/|$)/, to: '/m-team.html' },
+    { from: /\/m\/login(\/|$)/, to: '/m-login.html' }
   ]
 }));
 
@@ -43,7 +45,7 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
-app.use(staticPath, express.static('./static'))
+app.use(staticPath, express.static('./' + config.dev.assetsSubDirectory))
 
 var pathUrl = require('../config/config').pathUrl
 
@@ -55,5 +57,5 @@ module.exports = app.listen(config.dev.port, function (err) {
   }
   console.log(`listening at ${pathUrl}\n`)
 
-  opn(pathUrl)
+  opn(pathUrl + 'm/mine')
 })

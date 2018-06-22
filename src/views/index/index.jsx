@@ -1,5 +1,4 @@
 import { render } from 'react-dom';
-
 import routers from './router';
 
 import '@/assets/sass/index/main.scss';

@@ -1,5 +1,5 @@
 import React from 'react';
-import store from '@/store/index/store';
+// import store from '@/store/index/store';
 import { connect } from 'react-redux';
 import { increament, decreament, numModify } from '@/store/index/user/action';
 import PropTypes from 'prop-types';
@@ -14,17 +14,16 @@ class Center extends React.Component {
   setNum (type, num = 0) {
     switch (type) {
       case 1:
-        // this.props.increament();
-        store.dispatch(increament());
+        this.props.increament();
+        // store.dispatch(increament());
         break;
       case -1:
-        // this.props.decreament();
-        store.dispatch(decreament());
+        this.props.decreament();
+        // store.dispatch(decreament());
         break;
       default:
-        // this.props.numModify({ num });
-        console.log(num);
-        store.dispatch(numModify({ num }));
+        this.props.numModify({ num });
+        // store.dispatch(numModify({ num }));
     }
   }
   shouldComponentUpdate (nextProps, nexState) {

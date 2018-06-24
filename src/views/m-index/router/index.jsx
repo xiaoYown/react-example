@@ -1,5 +1,8 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import store from '@/store/index/store';
 
 import AppCmpt from '../../App';
 import NavCmpt from '../mixins/Nav';
@@ -10,21 +13,15 @@ import PageMessage from '../p-Message/Message';
 import PageCenter from '../p-Center/Center';
 
 class Index extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      name: 'index wrap',
-      num: 0
-    };
-  }
-  static defaultProps = {
-    name: 'index'
-  }
   render () {
     return (
       <div>
-        {this.props.children}
-        <NavCmpt />
+        <Provider store={ store }>
+          <div>
+            {this.props.children}
+            <NavCmpt />
+          </div>
+        </Provider>
       </div>
     );
   }

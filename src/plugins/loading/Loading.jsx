@@ -3,16 +3,28 @@ import ReactDOM from 'react-dom';
 
 import CSSTransition from 'react-transition-group/CSSTransition';
 
+const duration = 200; // fade 过渡时间
+
 class Loading extends Component {
   state = {
-    show: false
+    show: false,
+    hide: true
   }
   render () {
     return (
       <CSSTransition
         in={this.state.show}
-        timeout={10000}
-        classNames="fade"
+        timeout={0}
+        style={{
+          display: this.state.hide ? 'none' : 'block'
+        }}
+        classNames={{
+          enter: 'fade-enter',
+          enterDone: 'fade-enter-active',
+          exit: 'fade-exit',
+          exitActive: 'fade-exit-active',
+          exitDone: 'fade-exit-active'
+        }}
       >
         <div className="global-loading font-18">
           <div className="l-wrapper">
@@ -46,9 +58,21 @@ Loading.newInstance = function newNotificationInstance (properties) {
   document.body.appendChild(div);
   let notification = ReactDOM.render(React.createElement(Loading, props), div);
   return {
-    destroy () {
-      ReactDOM.unmountComponentAtNode(div);
-      document.body.removeChild(div);
+    show () { // 显示, display 需同时设置
+      notification.setState({
+        show: true,
+        hide: false
+      });
+    },
+    hide () { // 隐藏需先等待过渡结束后, 再设置 display
+      notification.setState({
+        show: false
+      });
+      setTimeout(() => {
+        notification.setState({
+          hide: true
+        });
+      }, duration);
     }
   };
 };

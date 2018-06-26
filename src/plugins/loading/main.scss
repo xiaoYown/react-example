@@ -55,27 +55,16 @@ circle {
     fill-opacity: 0;
   }
 }
-.fade-appear,
-.fade-enter {
-  opacity: 0;
-}
 
-
-
-// added immediately afterward
-.fade-appear-active,
-.fade-enter-active {
-  transition: opacity 300ms linear;
-  opacity: 1;
-}
-
-// added when component receives instructions to unmount
-.fade-exit {
-  transition: opacity 300ms linear;
-  opacity: 1;
-}
-
-// added immediately afterward
+.fade-enter,
 .fade-exit-active {
+  transition: opacity 200ms linear;
   opacity: 0;
+}
+
+// added immediately afterward
+.fade-exit,
+.fade-enter-active {
+  transition: opacity 200ms linear;
+  opacity: 1;
 }

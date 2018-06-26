@@ -8,17 +8,18 @@ let getLoadingInstance = () => {
 };
 export default {
   status: 0,
+  isInit: false,
+  loading: getLoadingInstance(),
   open () {
     if (!this.status) {
+      this.loading.show();
       this.status = 1;
-      getLoadingInstance();
     }
   },
   close () {
-    if (this.status && loadingInstance) {
+    if (this.status) {
+      this.loading.hide();
       this.status = 0;
-      loadingInstance.destroy();
-      loadingInstance = null;
     }
   }
 };

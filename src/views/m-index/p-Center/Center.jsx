@@ -15,7 +15,7 @@ class Center extends React.Component {
     global.Loading.open();
     setTimeout(function () {
       global.Loading.close();
-    }, 10000);
+    }, 2000);
     switch (type) {
       case 1:
         this.props.increament();

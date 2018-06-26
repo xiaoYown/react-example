@@ -12,6 +12,10 @@ class Center extends React.Component {
     numModify: PropTypes.func.isRequired
   }
   setNum (type, num = 0) {
+    global.Loading.open();
+    setTimeout(function () {
+      global.Loading.close();
+    }, 10000);
     switch (type) {
       case 1:
         this.props.increament();

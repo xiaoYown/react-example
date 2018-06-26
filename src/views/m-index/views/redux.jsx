@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { createStore, bindActionCreators } from 'redux';
+// import { createStore, bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import store from '@/redux/store';

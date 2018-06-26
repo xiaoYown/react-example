@@ -1,11 +1,12 @@
 import { render } from 'react-dom';
 import routers from './router';
 
-import isLogin from '@/utils/isLogin';
+import Loading from '@/plugins/loading';
 
 import '@/assets/sass/index/main.scss';
 
-console.log(isLogin());
+// 全局绑定 loading 组件
+global.Loading = Loading;
 
 // 渲染及更新时执行, 并返回一个虚拟 DOM
 render(

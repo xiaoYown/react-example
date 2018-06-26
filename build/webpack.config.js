@@ -70,6 +70,6 @@ module.exports = {
       '@': path.resolve(__dirname, '../src'),
       'config': path.resolve(__dirname, '../config')
     },
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.scss']
   }
 };

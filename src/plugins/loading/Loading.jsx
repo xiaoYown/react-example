@@ -22,7 +22,6 @@ class Loading extends Component {
           enter: 'fade-enter',
           enterDone: 'fade-enter-active',
           exit: 'fade-exit',
-          exitActive: 'fade-exit-active',
           exitDone: 'fade-exit-active'
         }}
       >

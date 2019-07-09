@@ -1,0 +1,85 @@
+.g-library-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: rem(90);
+  background-image: url('/m/static/images/top_bg_m.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+.g-library-logo{
+  display: inline-block;
+  margin-top: rem(15);
+  width: rem(208);
+  height:rem(55);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100%;
+  background-image: url('/m/static/images/mb_logo.png');
+}
+.g-library-body {
+  padding-top: rem(90);
+}
+.g-library-item-ul {
+  padding: rem(15);
+  width: 100%;
+  box-sizing: border-box;
+}
+.g-library-item-li {
+  display: inline-block;
+  padding: rem(15);
+  width: 50%;
+  box-sizing: border-box;
+}
+.g-library-item {
+  width: 100%;
+  background-color: $std_sub_7;
+}
+.g-library-item-cover {
+  width: 100%;
+  height: rem(400);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+.g-library-item-title {
+  display: block;
+  padding: 0 rem(25);
+  height: rem(65);
+  line-height: rem(65);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: rem(24);
+  color: $std_sub_1;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+.g-library-item-info{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: rem(55);
+  padding: 0 rem(25);
+  .icon-box{
+    display: flex;
+    align-items: center;
+    margin-left: rem(15);
+    .iconfont{
+      margin-right: rem(5);
+      color: $std_sub_2;
+    }
+    .icon-chakan{
+      font-size: rem(24);
+    }
+    .icon-dianzan{
+      font-size: rem(28);
+    }
+    span {
+      font-size: rem(24);
+      color: $std_sub_2;
+    }
+  }
+}

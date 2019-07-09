@@ -1,0 +1,16 @@
+@import "../mixins/base";
+@import '../index/mixins/nav';
+@import './mixins/dynamic';
+@import './mixins/member';
+@import './mixins/member-detail';
+@import './mixins/member-header';
+@import './mixins/member-group';
+@import './mixins/member-msg';
+@import './mixins/share';
+@import '../index/mixins/noData';
+@import '../index/mixins/loadFail';
+@import '../index/myReport/main';
+
+html {
+    background-color: $std_sub_6;
+}

@@ -1,0 +1,63 @@
+.p-memberGroup {
+  display: flex;
+  flex-wrap: wrap;
+  padding: rem(90) rem(10) rem(120) rem(10);
+  width: 100%;
+  box-sizing: border-box;
+}
+.p-memberGroupWrapper {
+  width: 100%;
+  box-sizing: border-box;
+  &.clearfix {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+}
+
+.p-memberGroupItem {
+  margin-top: rem(30);
+  width: 20%;
+  float: left;
+}
+
+.p-memberGroupItemImg {
+  display: block;
+  margin: 0 auto;
+  width: rem(94);
+  height: rem(94);
+  border-radius: 50%;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.p-memberGroupItemName {
+  display: block;
+  margin-top: rem(20);
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: rem(24);
+  color: $std_sub_1;
+}
+
+.p-memberGroupBtn {
+  margin: rem(70) auto 0 auto;
+  width: rem(300);
+  height: rem(70);
+  line-height: rem(70);
+  font-size: rem(28);
+  text-align: center;
+  background-color: $std_main_A;
+  color: $std_sub_7;
+  @include round(40, rem);
+}

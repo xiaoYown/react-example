@@ -1,0 +1,18 @@
+.m-report-fallback{
+  position: fixed;
+  left: rem(40);
+  bottom: rem(120);
+  width: rem(80);
+  height: rem(80);
+  border: 1px solid $std_sub_7;
+  box-shadow: 0 rem(-4) rem(20) 0 rgba($std_sub_5,.3);
+  border-radius: 50%;
+  background-color: $std_main_A;
+  .iconfont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: $std_sub_7;
+  }
+}

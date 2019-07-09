@@ -1,0 +1,34 @@
+.p-memberHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 rem(30);
+  width: 100vw;
+  height: rem(90);
+  background-image: url('/m/static/images/top_bg_m.png');
+  background-size: 100%;
+  box-sizing: border-box;
+}
+
+.p-memberHeaderL {
+  padding-right: rem(30);
+  font-size: rem(26);
+  color: $std_sub_7;
+}
+
+.p-memberHeaderM {
+  flex: 1;
+  text-align: center;
+  font-size: rem(32);
+  color: $std_sub_7;
+}
+
+.p-memberHeaderR {
+  padding-left: rem(30);
+  font-size: rem(26);
+  color: $std_sub_7;
+  opacity: 0;
+}

@@ -1,74 +1,48 @@
-import React, { Component } from 'react';
-import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import { render } from 'react-dom';
+import routers from './router';
 
-import AppCmpt from '../App.jsx';
-import homeCmpt from './views/home.jsx';
-import reduxCmpt from './views/redux.jsx';
-import d3Cmpt from './views/d3.jsx';
-import loginCmpt from './views/login.jsx';
-import aboutCmpt from './views/about.jsx';
-import IndexnavCmpt from './mixin/nav.jsx';
+import Loading from '@/plugins/loading';
 
-import { getCookie } from 'tools/client';
-import jQuery from 'jquery';
+// import entryInit from 'utils/entry-init';
 
-require('sass/base.scss');
-require('sass/index.scss');
+// import '@/assets/sass/index/main.scss';
 
-// global.jQuery = global.$ = jQuery;
+// 全局绑定 loading 组件
+global.Loading = Loading;
+// 渲染及更新时执行, 并返回一个虚拟 DOM
 
-class Index extends React.Component {
-  // constructor (props) {
-  //   super(props);
-  // }
-  // 1.创建阶段( getDefaultProps )
-  // getDefaultProps() {
-  //   console.log("getDefaultProps");
-  //   return {};
-  // }
-  // 2.实例化阶段
-  // getInitialState() {
-  //   console.log("getInitialState");
-  //   return {};
-  // }
+function init () {
+  render(
+    routers,
+    document.getElementById('page_index')
+  );
+}
 
-  // render之前调用，业务逻辑都应该放在这里，如对state的操作等
-  componentWillMount () {
-  }
-  // 渲染并返回一个虚拟DOM
-  render () {
-    return (
-      <div className="index-wrap">
-        <IndexnavCmpt />
-        {this.props.children}
-      </div>
-    );
-  }
-};
+// entryInit(init);
+init();
 
-// 权限判断
-const requireAuth = (nextState, replace) => {
-  if (!getCookie('session')) {
-    replace({ pathname: '/login' });
-  }
-};
-
-const routers = (
-  <AppCmpt>
-    <Router history={ browserHistory }>
-      <Route path="/" component={ Index }>
-        <IndexRoute component={ homeCmpt } onEnter={ requireAuth }/>
-        <Route path="/login" component={ loginCmpt }/>
-        <Route path="/redux" component={ reduxCmpt }/>
-        <Route path="/about" component={ aboutCmpt } onEnter={ requireAuth }/>
-        <Route path="/d3" component={ d3Cmpt }/>
-      </Route>
-    </Router>
-  </AppCmpt>
-);
-
-render(
-  routers,
-  document.getElementById('page_index')
-);
+// // render之前调用
+// componentWillMount () {
+//   console.log('will mount');
+// }
+// // render 之后调用
+// componentDidMount () {
+//   console.log('did mount');
+// }
+// // 组件接收新的参数时调用
+// componentWillReceiveProps () {
+//   console.log('props change');
+// }
+// props 更新时, 判断是否有变化, 无时返回 false, 阻止更新 dom
+// shouldComponentUpdate (nextProps, nexState) {
+//   return nextProps.num !== nexState.num;
+// }
+// // 组件更新完成后调用
+// componentDidUpdate () {
+//   console.log('update');
+// }
+// // 组件卸载前调用
+// componentWillUnmount () {
+//   console.log('will unmount');
+//   unsubscribe();
+// }

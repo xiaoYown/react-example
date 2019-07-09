@@ -1,0 +1,31 @@
+.m-myReport-folder{
+  background-color: $std_sub_7;
+  .m-myReport-folder-item{
+    height: rem(80);
+    line-height: rem(80);
+    padding: 0 rem(50);
+    color: $std_sub_1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .m-myReport-folder-item + .m-myReport-folder-item{
+    border-top: 1px solid $std_sub_5;
+  }
+  .m-myReport-folder-item-icon{
+    width: rem(40);
+    height: rem(40);
+    margin: rem(20) rem(30) 0 0;
+    background-image: url('/m/static/images/contact-group.png');
+    background-position: 50% 50%;
+    background-size: cover;
+    float: left;
+  }
+  .m-myReport-folder-item-name{
+    width: calc(100% - 1.49332rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+  }
+}

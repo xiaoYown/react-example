@@ -1,0 +1,24 @@
+.m-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border: 1px solid $std_sub_5;
+  background-color: #fff;
+}
+.m-navSpace {
+  height: rem(100);
+}
+.m-navItem {
+  display: inline-block;
+  vertical-align: middle;
+  width: 25%;
+  padding: rem(20) 0;
+  // height: rem(100);
+  line-height: rem(25);
+  @extend .font-20;
+  &.s-active {
+    color: $std_main_A;
+  }
+}

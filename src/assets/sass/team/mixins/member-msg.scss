@@ -1,0 +1,87 @@
+.p-memberMsgHead {
+  padding: rem(150) 0 rem(15) 0;
+  background-color: #fff;
+  text-align: center;
+}
+
+.p-memberMsgHeadImg {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  width: rem(120);
+  height: rem(120);
+  background-size: cover;
+  background-position: 50% 50%;
+  border-radius: 50%;
+}
+
+.p-memberMsgItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: rem(10);
+  width: 100%;
+  background-color: $std_sub_7;
+  border-bottom: rem(1) solid $std_sub_4;
+  box-sizing: border-box;
+  &.s-head{
+    padding-top: rem(90);
+    height: rem(150);
+    box-sizing: content-box;
+  }
+}
+
+.p-memberMsgInput{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: rem(690);
+  height: rem(100);
+  border-bottom: rem(1) solid $std_sub_4;
+  font-size: rem(24);
+  &.s-no-border{
+    border: none;
+  }
+  &.s-signature{
+    padding: rem(22) 0;
+    align-items: baseline;
+    height: rem(170);
+    .p-memberMsgInputText{
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      line-height: rem(34);
+      box-sizing: border-box;
+    }
+  }
+  &.s-remove {
+    justify-content: center;
+    color: $std_sub_2;
+  }
+}
+.p-memberMsgInputLabel{
+  width: rem(140);
+  color: $std_sub_2;
+}
+.p-memberMsgInputText{
+  flex: 1;
+  color: $std_sub_1;
+  &.s-none{
+    color: $std_sub_3;
+  }
+}
+
+.p-memberMsgBtn {
+  width: rem(300);
+  height: rem(70);
+  line-height: rem(70);
+  margin: rem(70) auto 0 auto;
+  font-size: rem(28);
+  color: $std_sub_7;
+  text-align: center;
+  background-color: $std_main_A;
+  @include round(40, rem);
+}

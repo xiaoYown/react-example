@@ -1,0 +1,65 @@
+@import '@/assets/sass/mixins/base';
+.g-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: table;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($std_sub_1, .5);
+}
+
+.g-popupCell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.g-popupWrapper {
+  padding-top: rem(50);
+  margin: 0 auto;
+  width: rem(600);
+  background-color: $std_sub_7;
+  overflow: hidden;
+  box-sizing: border-box;
+  @include round(25, rem);
+}
+
+.g-popupHeader {
+  width: 100%;
+  margin-bottom: rem(60);
+  font-size: rem(30);
+  text-align: center;
+  color: $std_sub_1;
+}
+
+.g-popupBody {
+  padding: 0 rem(35);
+  margin-bottom: rem(120);
+  font-size: rem(28);
+  color: $std_sub_2;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.g-popupFooter {
+  display: flex;
+  align-items: center;
+  border: 1px solid $std_sub_5;
+}
+
+.g-popupBtn {
+  width: 50%;
+  height: rem(86);
+  line-height: rem(86);
+  font-size: rem(28);
+  text-align: center;
+  &.left {
+    color: $std_main_A;
+    background-color: $std_sub_7;
+  }
+  &.right {
+    color: $std_sub_7;
+    background-color: $std_main_A;
+  }
+}

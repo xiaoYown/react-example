@@ -1,0 +1,15 @@
+@import '@/assets/sass/mixins/base';
+
+.g-headImg {
+  margin: 0 auto;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: $std_main_A;
+  border-radius: 50%;
+  text-align: center;
+  font-size: rem(42);
+  color: #fff;
+  box-sizing: border-box;
+}

@@ -1,0 +1,64 @@
+.p-teamShare-wrap{
+  position: relative;
+  width: rem(610);
+  padding-top: rem(130);
+  margin: 0 auto;
+}
+.p-teamShare-main{
+  width: 100%;
+  height: rem(700);
+  border-radius: rem(30);
+  box-shadow: rem(1) rem(4) rem(8) 0 rgba(38,38,38,.1);
+  background-color: #fff;
+  overflow: hidden;
+}
+.p-teamShare-image{
+  width: rem(250);
+  height: rem(250);
+  margin: rem(50) auto;
+  border: 1px solid $std_sub_5;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.p-teamShare-title,
+.p-teamShare-desc{
+  width: rem(450);
+  text-align: center;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.p-teamShare-title{
+  color: $std_sub_1;
+}
+.p-teamShare-desc{
+  color: $std_sub_2;
+  margin-top: rem(20);
+  margin-bottom: rem(80);
+}
+.p-teamShare-btn{
+  width: rem(450);
+  height: rem(80);
+  line-height: rem(80);
+  text-align: center;
+  color: $std_sub_7;
+  border-radius: rem(40);
+  margin: 0 auto;
+  background-color: $std_main_A;
+}
+.p-teamShare-timer{
+  position: absolute;
+  bottom: rem(-50);
+  width: 100%;
+  color: $std_sub_3;
+  text-align: center;
+}
+.p-teamShare-banber{
+  position: fixed;
+  bottom: rem(60);
+  left: 50%;
+  transform: translateX(-50%);
+  color: $std_sub_3;
+  text-align: center;
+}

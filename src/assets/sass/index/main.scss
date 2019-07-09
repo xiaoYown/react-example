@@ -1,0 +1,14 @@
+@import "../mixins/base";
+@import "./mixins/nav";
+@import "./mixins/noData";
+@import "./mixins/loadFail";
+@import "./myReport/main";
+
+@import "./myTeam/main";
+
+@import "./library/main";
+
+@import "./message/main";
+html {
+    background-color: $std_sub_6;
+}

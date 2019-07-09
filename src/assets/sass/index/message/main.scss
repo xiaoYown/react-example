@@ -1,0 +1,64 @@
+.p-index-message{
+  padding: 0 rem(30);
+  height: auto;
+  .p-index-message-item{
+    margin: rem(20) auto;
+    padding: rem(10) rem(20);
+    background-color: $std_sub_7;
+    border-radius: rem(10);
+    box-shadow: 0 rem(-4) rem(20) 0 rgba($std_sub_5,.3);
+    box-sizing: border-box;
+  }
+  .p-index-message-info-header{
+    color: $std_sub_3;
+    .p-type{
+      margin-right: rem(3)
+    }
+  }
+  .p-index-message-info-content{
+    margin: rem(20) 0 rem(30);
+    .p-user{
+      color: $std_sub_1;
+    }
+    .p-normal-text{
+      margin: 0 rem(10);
+      color: $std_sub_2;
+    }
+    .p-report{
+      color: $std_sub_1;
+    }
+    .p-report-link{
+      color: $std_main_A;
+    }
+  }
+  .p-index-message-info-fooder{
+    overflow: hidden;
+    span{
+      float: right;
+    }
+    .p-btn{
+      width: rem(136);
+      height: rem(44);
+      margin-left: rem(20);
+      border: rem(2) solid transparent;
+      border-radius: rem(50);
+      line-height: rem(44);
+      text-align: center;
+    }
+    .p-btn-normal{
+      color: $std_sub_7;
+      background-color: $std_main_A;
+    }
+    .p-btn-ghost{
+      color: $std_main_A;
+      border-color: $std_main_A;
+      background-color: $std_sub_7;
+    }
+    .p-allow{
+      color: $std_main_A;
+    }
+    .p-reject{
+      color: $std_sub_2;
+    }
+  }
+}

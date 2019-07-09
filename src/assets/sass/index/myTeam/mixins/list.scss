@@ -1,0 +1,57 @@
+.p-myTeamList {
+    width: 100%;
+    padding: rem(20) rem(30) 0 rem(30);
+    box-sizing: border-box;
+    .p-myTeamItem {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: rem(135);
+      text-align: left;
+      margin: rem(20) auto;
+      padding: rem(10) rem(20);
+      box-sizing: border-box;
+      color: $std_sub_2;
+      border-radius: rem(10);
+      background-color: $std_sub_7;
+      box-shadow: 0 rem(-4) rem(20) 0 rgba($std_sub_5,.3);
+      cursor: pointer;
+      &:first-of-type {
+        margin-top: 0;
+      }
+      .myTeam-img {
+        width: rem(60);
+        height: rem(60);
+        margin-left: rem(30);
+        margin-right: rem(30);
+      }
+      .myTeam-content {
+        flex: 1;
+        overflow: hidden;
+        padding-right: rem(20);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        .txt {
+          width: 100%;
+          &.title {
+            padding-bottom: rem(10);
+            color: $std_sub_1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          &.desc {
+            color: $std_sub_2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
+      }
+    }
+  }

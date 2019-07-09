@@ -1,0 +1,81 @@
+/* 
+* 我的团队成员列表样式
+*/
+
+.p-memberList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: rem(0) rem(10);
+  box-sizing: border-box;
+  color: $std_sub_1;
+  text-align: center;
+  &.clearfix {
+    &:before,
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+    &:after {
+      clear: both;
+    }
+  }
+  .p-memberItem {
+    display: inline-block;
+    width: 19.8%;
+    text-align: center;
+    margin-top: rem(30);
+    .invite {
+      border: 1px solid $std_sub_2;
+      box-sizing: border-box; // margin-bottom: rem(14);
+      // font-size: rem(94);
+      // color: $std_sub_2;
+    }
+    .member-box {
+      position: relative;
+    }
+    .member-img {
+      position: relative;
+      display: block;
+      margin: 0 auto;
+      margin-bottom: rem(14);
+      width: rem(94);
+      height: rem(94);
+      border-radius: 50%;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      .flag {
+        width: rem(30);
+        height: rem(30);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-size: 100% 100%;
+      }
+    }
+    .member-name {
+      width: rem(94);
+      margin: 0 auto;
+      word-break: keep-all;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .member-img {
+    width: rem(94);
+    height: rem(94);
+    border-radius: 50%;
+    margin-bottom: rem(20);
+  }
+  .member-name {
+    width: rem(94);
+    margin: 0 auto;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -6,13 +6,13 @@ import store from '@/store/index/store';
 // import { isLogin, login } from '@custom/utils/user';
 
 import AppCmpt from '../../App';
-import NavCmpt from '../mixins/Nav';
+// import NavCmpt from '../mixins/Nav';
 
-import PageMyReport from '../p-MyReport/MyReport';
-import PageMyTeam from '../p-MyTeam/MyTeam';
-import PageMessage from '../p-Message/Message';
+// import PageMyReport from '../p-MyReport/MyReport';
+// import PageMyTeam from '../p-MyTeam/MyTeam';
+// import PageMessage from '../p-Message/Message';
 // import PageCenter from '@custom/components/m-center/center';
-import PageLibrary from '../p-library/library';
+// import PageLibrary from '../p-library/library';
 import PageAntd from '../p-Antd/Antd';
 
 class Index extends React.Component {
@@ -53,12 +53,12 @@ const routers = (
   <Router>
     <AppCmpt>
       <Index>
-        <Route exact path="/m/index/myreport" component={ PageMyReport }/>
+        {/* <Route exact path="/m/index/myreport" component={ PageMyReport }/>
         <Route exact path="/m/index/myreport/:id" component={ PageMyReport }/>
         <Route exact path="/m/index/myteam" component={ PageMyTeam }/>
         <Route exact path="/m/index/message" component={ PageMessage }/>
-        <Route exact path="/m/index/antd" component={ PageAntd }/>
-        <Route exact path="/m/index/library" component={ PageLibrary }/>
+        <Route exact path="/m/index/library" component={ PageLibrary }/> */}
+        <Route path="/m/index/antd/:component?/:param1?" component={ PageAntd }/>
       </Index>
     </AppCmpt>
   </Router>

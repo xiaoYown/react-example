@@ -47,12 +47,32 @@ const treeData = [
     key: '0-2'
   }
 ];
+/**
+ * @description - 生成 treeData 测试代码
+ * @param {number} len - 每一层级节点数 (not must)
+ * @param {number} level - 最高层级, 从 0 开始 (not must)
+ * @param {number} currentLevel - 当前层级数 (not must)
+ * @param {number} parentKey - 父级 key (not must)
+ */
+function createTreeData (len = 10, level = 2, currentLevel = 0, parentKey) {
+  let result = [];
+  let item;
+  for (let i = 0; i < len; i++) {
+    item = { key: `${parentKey ? parentKey + '-' : ''}${i}`, title: `${parentKey ? parentKey + '-' : ''}${i}` };
+    if (currentLevel < level) {
+      item.children = createTreeData(len, level, currentLevel + 1, item.key);
+    }
+    result.push(item);
+  }
+  return result;
+}
 
 class Demo extends React.Component {
   render () {
     return (
       <TreeSearch
-        treeData={ treeData }
+        treeData={ createTreeData() }
+        // treeData={ treeData }
         // searchValue="o"
         // selectedKeys="0-1-0-0"
         // treeProps={{ className }}

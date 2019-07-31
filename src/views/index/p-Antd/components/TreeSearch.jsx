@@ -124,7 +124,7 @@ class TreeSearch extends React.Component {
     this.state.treeDisplay !== 'block' && this.setState({ treeDisplay: 'block' });
   }
   blur = () => {
-    // this.state.treeDisplay !== 'none' && this.setState({ treeDisplay: 'none' });
+    this.state.treeDisplay !== 'none' && this.setState({ treeDisplay: 'none' });
   }
   changeSearch = (e) => { // 搜索框 改变时, 生成过滤后的 treeData,expandedKeys
     let { value } = e.target;

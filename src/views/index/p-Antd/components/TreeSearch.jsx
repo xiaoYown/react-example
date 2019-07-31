@@ -124,7 +124,7 @@ class TreeSearch extends React.Component {
     this.state.treeDisplay !== 'block' && this.setState({ treeDisplay: 'block' });
   }
   blur = () => {
-    this.state.treeDisplay !== 'none' && this.setState({ treeDisplay: 'none' });
+    // this.state.treeDisplay !== 'none' && this.setState({ treeDisplay: 'none' });
   }
   changeSearch = (e) => { // 搜索框 改变时, 生成过滤后的 treeData,expandedKeys
     let { value } = e.target;
@@ -153,20 +153,18 @@ class TreeSearch extends React.Component {
     function loop (data) {
       return data.map(item => {
         let { title } = _this.treeNodeProps(item);
-        let index = title.indexOf(searchValue);
-        let preKey = title.substr(0, index);
-        let sufKey = title.substr(index + searchValue.length);
-        let _title;
         let props = _this.treeNodeProps(item);
-        props.title && delete props.title;
+        let _title;
 
-        if (index > -1) {
-          _title = <span>
-            { preKey }<span style={{color: '#f50'}}>{ searchValue }</span>{ sufKey }
-          </span>;
+        if (searchValue && new RegExp(searchValue).test(title)) { // 检测搜索文本匹配
+          _title = <span dangerouslySetInnerHTML={{
+            __html: title.replace(new RegExp(`(${searchValue})+`, 'gi'), text => `<span style="color: #f50">${text}</span>`)
+          }}></span>;
         } else {
           _title = title;
         }
+        props.title && delete props.title;
+
         if (item.children) {
           return <TreeNode {...props} title={ _title } data={ item }>
             {loop(item.children)}

@@ -52,9 +52,11 @@ class Demo extends React.Component {
   render () {
     return (
       <TreeSearch
+        treeData={ treeData }
         // searchValue="o"
         // selectedKeys="0-1-0-0"
-        treeData={ treeData }
+        // treeProps={{ className }}
+        // treeNodeProps={({ key, title }) => ({ key, title: 'title-' + title })}
         onSelect={ item => console.log(item) }
       />
       // <Tree

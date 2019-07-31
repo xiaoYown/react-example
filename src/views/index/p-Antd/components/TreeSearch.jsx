@@ -2,6 +2,41 @@ import React from 'react';
 import { Tree, Input } from 'antd';
 
 /**
+ * @description - 过滤不符合搜索条件的节点
+ * @param {Object} data - 树结构数据
+ * @param {string} text - 搜索文本
+ * @param {Function} generateTitle - 提取 title 函数
+ */
+function filterNotMatch (data, text, generateTitle) {
+  let isMatch = false;
+  let children;
+  for (let i = data.length - 1; i >= 0; i--) {
+    isMatch = generateTitle(data[i]).indexOf(text) !== -1;
+    if (data[i].children && data[i].children.length) {
+      children = filterNotMatch(data[i].children, text, generateTitle);
+    }
+    if ((!isMatch && !children) || (!isMatch && children && !children.length)) {
+      data.splice(i, 1);
+    }
+  }
+  return data;
+}
+/**
+ * @description - 获取结构树所有 key
+ * @param {Object[]} data - 树结构数据
+ * @param {Function} generateKey - 提取 key 函数
+ */
+function getAllKeys (data, generateKey, keys = []) {
+  data.forEach(item => {
+    keys.push(generateKey(item));
+    if (item.children && item.children.length) {
+      keys = keys.concat(getAllKeys(item.children, generateKey));
+    }
+  });
+  return keys;
+}
+
+/**
  * @description - 获取选中节点父节点 key, 用于展开节点
  * @param {Object[object]} data - 树结构数据
  * @param {Object[string]} selectedKeys - 选中节点 key
@@ -69,7 +104,9 @@ class TreeSearch extends React.Component {
     this.state = {
       expandedKeys,
       treeDisplay: 'none',
-      searchValue: _searchValue
+      searchValue: _searchValue,
+      autoExpandParent: true,
+      treeDataFilter: null // 经过过滤的结构树
     };
   }
   componentDidMount () {
@@ -87,19 +124,32 @@ class TreeSearch extends React.Component {
     this.state.treeDisplay !== 'none' && this.setState({ treeDisplay: 'none' });
   }
   changeSearch = (e) => {
+    let { value } = e.target;
+    let treeDataFilter;
+    let expandedKeys = [];
+    let treeData = JSON.parse(JSON.stringify(this.props.treeData));
+    if (value) {
+      treeDataFilter = filterNotMatch(treeData, value, this.generateTitle);
+      expandedKeys = getAllKeys(treeData, this.generateKey);
+    }
+    if (!treeDataFilter || !treeDataFilter.length) {
+      treeDataFilter = null;
+    }
     this.setState({
-      searchValue: e.target.value
+      searchValue: value,
+      autoExpandParent: true,
+      expandedKeys,
+      treeDataFilter,
+      treeDisplay: 'block'
     });
   }
   loopNode = (treeData) => {
     let searchValue = this.state.searchValue || '';
-    let generateKey = this.props.generateKey || (item => item.key);
-    let generateTitle = this.props.generateTitle || (item => item.title);
-
+    let _this = this;
     function loop (data) {
       return data.map(item => {
-        let title = generateTitle(item);
-        let key = generateKey(item);
+        let title = _this.generateTitle(item);
+        let key = _this.generateKey(item);
         let index = title.indexOf(searchValue);
         let preKey = title.substr(0, index);
         let sufKey = title.substr(index + searchValue.length);
@@ -124,7 +174,7 @@ class TreeSearch extends React.Component {
     return loop(treeData);
   }
   onExpand = (expandedKeys) => {
-    this.setState({ expandedKeys });
+    this.setState({ expandedKeys, autoExpandParent: false });
   }
   onSelect = (keys, e) => {
     let { data } = e.node.props;
@@ -136,7 +186,7 @@ class TreeSearch extends React.Component {
   }
 
   render () {
-    const { expandedKeys, searchValue, treeDisplay } = this.state;
+    const { expandedKeys, searchValue, treeDisplay, autoExpandParent, treeDataFilter } = this.state;
     const { treeData, wrapperClass, treeClass, treeProps } = this.props;
 
     return (
@@ -152,11 +202,11 @@ class TreeSearch extends React.Component {
             showLine
             className={ treeClass }
             expandedKeys={ expandedKeys }
-            autoExpandParent={true}
+            autoExpandParent={autoExpandParent}
             onExpand={ this.onExpand }
             onSelect={ this.onSelect }
           >
-            { this.loopNode(treeData) }
+            { this.loopNode(treeDataFilter || treeData) }
           </Tree>
         </div>
       </div>

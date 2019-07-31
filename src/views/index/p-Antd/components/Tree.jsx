@@ -53,7 +53,7 @@ class Demo extends React.Component {
     return (
       <TreeSearch
         // searchValue="o"
-        selectedKeys="0-1-0-0"
+        // selectedKeys="0-1-0-0"
         treeData={ treeData }
         onSelect={ item => console.log(item) }
       />

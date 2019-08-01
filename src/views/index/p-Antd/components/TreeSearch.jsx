@@ -149,6 +149,7 @@ class TreeSearch extends React.Component {
   loopNode = (treeData) => {
     let searchValue = this.state.searchValue || '';
     let _this = this;
+    let searchRegExp = searchValue ? new RegExp(`(${searchValue})+`, 'gi') : '';
 
     function loop (data) {
       return data.map(item => {
@@ -156,9 +157,9 @@ class TreeSearch extends React.Component {
         let props = _this.treeNodeProps(item);
         let _title;
 
-        if (searchValue && new RegExp(searchValue).test(title)) { // 检测搜索文本匹配
+        if (searchValue && title.indexOf(searchValue) !== -1) { // 检测搜索文本匹配
           _title = <span dangerouslySetInnerHTML={{
-            __html: title.replace(new RegExp(`(${searchValue})+`, 'gi'), text => `<span style="color: #f50">${text}</span>`)
+            __html: title.replace(searchRegExp, text => `<span style="color: #f50">${text}</span>`)
           }}></span>;
         } else {
           _title = title;

@@ -43,7 +43,7 @@ var plugins = [
 Object.keys(baseWebpack.entry).forEach(function(name){
   var plugin = new HtmlWebpackPlugin({
     filename: path.resolve(__dirname, `../dist/${name}.html`),
-    template: path.resolve(__dirname, `../src/${name}.ejs`),
+    template: path.resolve(__dirname, `../src/htmls/${name}.ejs`),
     favicon: config.build.favicon,
     inject: true,
     chunks: ['manifest', 'vendor', name], 		// 多文件打包引入
@@ -81,31 +81,14 @@ var newWebpack = merge(baseWebpack, {
         }
       })
     ],
-    runtimeChunk: {
-      name: entrypoint => `runtime~${entrypoint.name}`
-    },
-    splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      automaticNameMaxLength: 30,
-      name: true,
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-    }
+    // runtimeChunk: {
+    //   name: entrypoint => `runtime~${entrypoint.name}`
+    // },
+    // splitChunks: {
+    //   vendor (chunk) {
+    //     return /node_modules/.test(chunk.name);
+    //   }
+    // }
   },
 });
 

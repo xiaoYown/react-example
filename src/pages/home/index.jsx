@@ -1,3 +1,4 @@
+import 'react';
 import { render } from 'react-dom';
 import routers from './routers';
 

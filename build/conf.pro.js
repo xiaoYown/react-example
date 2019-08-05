@@ -10,34 +10,20 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const package = require('../package.json');
 
-const banner =
+const BANNER =
 `[name].js v ${package.version}
-Date: ${config.build.time}`;
+Date: ${config.build.time}
+Author: ${package.author}`;
 
 
 var plugins = [
   new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[chunkhash]')), 	//单独使用style标签加载css并设置其路径
   new webpack.BannerPlugin({
-    banner: banner
+    banner: BANNER
   }),
   new webpack.DefinePlugin({
     'process.env': config.build.env
   }),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false
-  //   }
-  // }),
-  // new webpack.optimize.CommonsChunkPlugin({
-  //   name: 'vendor',
-  //   minChunks: function(module){
-  //     return module.context && module.context.includes('node_modules');
-  //   }
-  // }),
-  // new webpack.optimize.CommonsChunkPlugin({
-  //   name: 'manifest',
-  //   minChunks: Infinity
-  // })
   // new BundleAnalyzerPlugin()
 ];
 Object.keys(baseWebpack.entry).forEach(function(name){
@@ -84,11 +70,15 @@ var newWebpack = merge(baseWebpack, {
     // runtimeChunk: {
     //   name: entrypoint => `runtime~${entrypoint.name}`
     // },
-    // splitChunks: {
-    //   vendor (chunk) {
-    //     return /node_modules/.test(chunk.name);
-    //   }
-    // }
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        }
+      }
+    }
   },
 });
 

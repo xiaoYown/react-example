@@ -1,0 +1,10 @@
+.s-hidden {
+  display: none;
+}
+
+.s-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}

@@ -1,0 +1,36 @@
+/** 主色
+ * A 默认色
+ * B 移至互动色
+ * C 边框色
+ * D hover色
+ */
+$std_main_A: #D32F2F;
+$std_main_B: #FFCDD2;
+$std_main_C: #F44336;
+$std_main_D: #FF5722;
+
+/** 辅色
+ * 1 主要字体, 导航图标颜色等
+ * 2 次要文字图表颜色
+ * 3 图标不可用等
+ * 4 各种边框分隔线颜色
+ * 5 各种 hover 底色
+ * 6 用于操作区整体底色
+ * 7 用于首页底色
+ */
+$std_sub_1: #212121;
+$std_sub_2: #757575;
+$std_sub_3: #BDBDBD;
+$std_sub_4: #EFEFEF;
+$std_sub_5: #FFFFFF;
+
+/** 提示色
+ * error 错误提示
+ * success 成功提示
+ */
+$std_error: #F44336;
+$std_success: #58cb71;
+
+/** 遮罩层色
+ */
+$std_cover_1: rgba($std_sub_1, .5);

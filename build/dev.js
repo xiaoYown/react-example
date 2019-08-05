@@ -32,18 +32,17 @@ Object.keys(proxyTable).forEach(function (context) {
 
 app.use(require('connect-history-api-fallback')({
   rewrites: [
-    { from: /\/home(\/|$)/, to: '/home.html' }
+    { from: /\/home(\/|$)/, to: '/home.html' },
+    { from: /\/mobile(\/|$)/, to: '/mobile.html' },
   ]
 }));
 
 app.use(devMiddleware);
 app.use(webpackHotMiddleware(compiler, {
   log: false,
-  // log: console.log,
   path: "/__webpack_hmr",
   heartbeat: 10 * 1000
 }));
-// app.use(hotMiddleware);
 
 setTimeout(() => {
   compiler.apply(new webpack.BannerPlugin('A new banner'));

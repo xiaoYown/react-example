@@ -37,12 +37,6 @@ var newWebpack = merge(baseWebpack, {
     filename: '[name].js',
     publicPath: config.dev.assetsPublicPath
   },
-  module: {
-    rules: utils.styleLoaders({
-      sourceMap: true,
-      usePostCSS: false
-    })
-  },
   devtool: 'cheap-module-eval-source-map',
   // devtool: '#source-map',
   plugins: plugins

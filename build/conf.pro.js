@@ -4,10 +4,10 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const config = require('../base.config');
 const baseWebpack = require('./webpack.config.js');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const package = require('../package.json');
 
 const BANNER =
@@ -17,14 +17,17 @@ Author: ${package.author}`;
 
 
 var plugins = [
-  new ExtractTextPlugin(utils.assetsPath('css/[name].css?v=[chunkhash]')), 	//单独使用style标签加载css并设置其路径
   new webpack.BannerPlugin({
     banner: BANNER
   }),
   new webpack.DefinePlugin({
     'process.env': config.build.env
   }),
-  // new BundleAnalyzerPlugin()
+  new MiniCssExtractPlugin({
+    filename: utils.assetsPath(`css/[name].css?t=${config.build.time}`),
+    chunkFilename: utils.assetsPath(`css/[id].css?t=${config.build.time}`)
+  }),
+  new BundleAnalyzerPlugin()
 ];
 Object.keys(baseWebpack.entry).forEach(function(name){
   var plugin = new HtmlWebpackPlugin({
@@ -32,7 +35,7 @@ Object.keys(baseWebpack.entry).forEach(function(name){
     template: path.resolve(__dirname, `../src/htmls/${name}.ejs`),
     favicon: config.build.favicon,
     inject: true,
-    chunks: ['manifest', 'vendor', name], 		// 多文件打包引入
+    chunks: ['vendor', name], 		// 多文件打包引入
     chunksSortMode: 'dependency',
     // chunksSortMode: 'auto'
     minify: {
@@ -51,13 +54,6 @@ var newWebpack = merge(baseWebpack, {
     chunkFilename: utils.assetsPath(`js/chunks/[name].js?t=${config.build.time}`),
     publicPath: config.build.assetsPublicPath
   },
-  module: {
-    rules: utils.styleLoaders({
-      sourceMap: config.build.productionSourceMap,
-      extract: true,
-      usePostCSS: true
-    })
-  },
   plugins: plugins,
   optimization: {
     minimizer: [
@@ -67,17 +63,18 @@ var newWebpack = merge(baseWebpack, {
         }
       })
     ],
-    // runtimeChunk: {
-    //   name: entrypoint => `runtime~${entrypoint.name}`
-    // },
     splitChunks: {
       cacheGroups: {
         vendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router)[\\/]/,
           name: 'vendor',
           chunks: 'all',
+        },
+        default: {
+          test: /node_modules/,
+          minChunks: 2,
         }
-      }
+      },
     }
   },
 });

@@ -1,11 +1,12 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const fs = require('fs');
-const utils = require('./utils');
+// const utils = require('./utils');
 const config = require('../base.config');
 
 let isPro = process.env.NODE_ENV == 'production';
 
-function getEntries (folder) {
+function getEntries(folder) {
   let views = fs.readdirSync(folder);
   let entries = {};
   views.forEach(view => {
@@ -41,28 +42,46 @@ module.exports = {
           presets: [['es2015', 'stage-2']]
         }
       },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: utils.assetsPath('images/[name].[ext]'),
-        }
-      },
+      // {
+      //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      //   loader: 'url',
+      //   query: {
+      //     limit: 10000,
+      //     name: utils.assetsPath('images/[name].[ext]'),
+      //   }
+      // },
       { // eslint 检查
         test: /\.js[x]?$/,
         loader: 'eslint-loader',
         include: [
           path.join(__dirname, '../src')
         ],
-        exclude: /node_modules/
+        exclude: /(node_modules)|(assets\/js)/
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: !isPro ? 'style-loader' : MiniCssExtractPlugin.loader,
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
       }
     ]
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src'),
-      // 'config': path.resolve(__dirname, '../config')
     },
     extensions: ['.js', '.jsx', '.scss']
   }

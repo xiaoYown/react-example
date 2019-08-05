@@ -1,11 +1,11 @@
 require('shelljs/global'); // can replace unix shell scripts on nodejs
 
 const path = require('path');
-const config = require('../base.config');
+const CONFIG = require('../base.config');
 const ora =	require('ora');
 const webpack =	require('webpack');
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.build.env.NODE_ENV);
+if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(CONFIG.build.env.NODE_ENV);
 
 let webpackMerge = require('./conf.pro');
 
@@ -20,11 +20,11 @@ Opening index.html over file:// won\'t work.\n
 let spinner = ora('building for production...');
 spinner.start();
 
-let assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory);
+let assetsPath = path.join(CONFIG.build.assetsRoot, CONFIG.build.assetsSubDirectory);
 
-rm('-rf', assetsPath);
+rm('-rf', CONFIG.build.assetsRoot);
 mkdir('-p', assetsPath);
-cp('-R', config.dev.assetsFileDirectory + '/', path.join(assetsPath, '../'));
+cp('-R', CONFIG.dev.assetsFileDirectory + '/', path.join(assetsPath, '../'));
 
 webpack(webpackMerge, function (err, stats) {
   spinner.stop()

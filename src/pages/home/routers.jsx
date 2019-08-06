@@ -1,29 +1,36 @@
 import React from 'react';
-// import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from '@/store/home';
 import ViewIndex from './views/index/index';
+import CmpLayout from './components/Layout';
 
-// class Index extends React.Component {
-//   constructor () {
-//     super();
-//     this.state = {
-//       navs: []
-//     };
-//   }
-//   render () {
-//     // const pathname = window.location.pathname;
-//     return (
-//       <Provider store={ store }>
-//         <div>
-//           {this.props.children}
-//         </div>
-//       </Provider>
-//     );
-//   }
-// };
+class StoreWrapper extends React.Component {
+  constructor () {
+    super();
+    this.state = {
+      navs: []
+    };
+  }
+
+  render () {
+    return (
+      <Provider store={ store }>
+        <div>
+          <CmpLayout>
+            { this.props.children }
+          </CmpLayout>
+        </div>
+      </Provider>
+    );
+  }
+};
+
 const routers = (
   <Router>
-    <Route path="/" component={ ViewIndex }/>
+    <StoreWrapper>
+      <Route path="/" component={ ViewIndex }/>
+    </StoreWrapper>
   </Router>
 );
 

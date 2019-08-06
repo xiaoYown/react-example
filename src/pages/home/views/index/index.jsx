@@ -1,8 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class ViewHomw extends React.Component {
+class ViewHome extends React.Component {
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  }
+
   render () {
-    return <div>Home page</div>;
+    return <div>Wellcome to home page, { this.props.user.name } !</div>;
   }
 }
-export default ViewHomw;
+
+export default connect(state => ({
+  user: state.user
+}))(ViewHome);

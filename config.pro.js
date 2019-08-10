@@ -10,10 +10,12 @@ function timeformat(time) {
 const BUILD_TIME = timeformat(new Date());
 
 const CONFIG = {
-  timesStamp: BUILD_TIME,
+  templateSuffix: 'ejs',
+  templatePath: path.resolve(__dirname, `./src/htmls`),
+  timeStamp: BUILD_TIME.time,
   assetsRoot: path.resolve(__dirname, './dist'),
-  assetsFileDirectory: 'static/react', // 静态资源前端项目下目录名称
-  assetsPublicPath: '/', // 打包到服务器静态资源根目录名
+  assetsFileDirectory: 'static/react', // 文件生成到 dist 下的路径
+  assetsPublicPath: '/', // 打包后路径资源前缀
 }
 
 module.exports = CONFIG;

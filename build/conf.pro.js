@@ -26,15 +26,15 @@ var plugins = [
     'process.env': 'production'
   }),
   new MiniCssExtractPlugin({
-    filename: utils.assetsPath(`css/[name].css?t=${CONFIG_PRO.time}`),
-    chunkFilename: utils.assetsPath(`css/[id].css?t=${CONFIG_PRO.time}`)
+    filename: utils.assetsPath(`css/[name].css?t=${CONFIG_PRO.timeStamp}`),
+    chunkFilename: utils.assetsPath(`css/[id].css?t=${CONFIG_PRO.timeStamp}`)
   }),
-  new BundleAnalyzerPlugin()
+  // new BundleAnalyzerPlugin()
 ];
 Object.keys(baseWebpack.entry).forEach(name => {
   var plugin = new HtmlWebpackPlugin({
-    filename: path.resolve(__dirname, `../dist/${name}.html`),
-    template: path.resolve(__dirname, `../src/htmls/${name}.ejs`),
+    filename: path.resolve(CONFIG_PRO.assetsRoot, `${name}.html`),
+    template: path.resolve(__dirname, `../src/htmls/${name}.${CONFIG_PRO.templateSuffix}`),
     inject: true,
     chunks: ['vendor', name], 		// 多文件打包引入
     chunksSortMode: 'dependency',
@@ -51,8 +51,8 @@ var newWebpack = merge(baseWebpack, {
   mode: 'production',
   output: {
     path: CONFIG_PRO.assetsRoot,
-    filename: utils.assetsPath(`js/[name].js?t=${CONFIG_PRO.time}`),
-    chunkFilename: utils.assetsPath(`js/chunks/[name].js?t=${CONFIG_PRO.time}`),
+    filename: utils.assetsPath(`js/[name].js?t=${CONFIG_PRO.timeStamp}`),
+    chunkFilename: utils.assetsPath(`js/chunks/[name].js?t=${CONFIG_PRO.timeStamp}`),
     publicPath: CONFIG_PRO.assetsPublicPath
   },
   plugins: plugins,

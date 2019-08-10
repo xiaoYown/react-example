@@ -1,16 +1,15 @@
 const path =	require('path');
-const config = 	require('../base.config');
 const webpack =	require('webpack');
 const merge =	require('webpack-merge');
 const HtmlWebpackPlugin =	require('html-webpack-plugin');
-const utils =	require('./utils');
 const baseWebpack =	require('./webpack.config');
+const CONFIG_DEV = require('../config.dev');
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV);
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
 var plugins = [
   new webpack.DefinePlugin({
-    'process.env': config.dev.env
+    'process.env': 'development'
   }),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
@@ -22,8 +21,7 @@ Object.keys(baseWebpack.entry).forEach(function(name){
 
   let plugin = new HtmlWebpackPlugin({
     filename: name + '.html',
-    template: path.resolve(__dirname, `../src/htmls/${name}.ejs`), // page entries
-    favicon: config.dev.favicon,
+    template: path.join(CONFIG_DEV.templatePath, `${name}.${CONFIG_DEV.templateSuffix}`), // page entries
     inject: true,
     chunks: [name]
   });
@@ -33,9 +31,8 @@ Object.keys(baseWebpack.entry).forEach(function(name){
 var newWebpack = merge(baseWebpack, {
   mode: 'development',
   output: {
-    path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: config.dev.assetsPublicPath
+    publicPath: '/'
   },
   devtool: 'cheap-module-eval-source-map',
   // devtool: '#source-map',
@@ -43,4 +40,3 @@ var newWebpack = merge(baseWebpack, {
 });
 
 module.exports = newWebpack;
-

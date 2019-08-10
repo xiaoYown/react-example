@@ -1,18 +1,17 @@
-const path = require('path');
 const express =	require('express');
 const webpack =	require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const proxyMiddleware = require('http-proxy-middleware');
-const config = require('../base.config');
 const webpackMerge = require('./conf.dev');
+const CONFIG_DEV = require('../config.dev');
 
 var app = express();
 
 var compiler = webpack(webpackMerge);
 
 var devMiddleware = webpackDevMiddleware(compiler, {
-  publicPath: webpackMerge.output.publicPath,
+  publicPath: '/',
   stats: {
     colors: true,
     chunks: false,
@@ -21,8 +20,7 @@ var devMiddleware = webpackDevMiddleware(compiler, {
   }
 });
 // proxy api requests
-var proxyTable = config.dev.proxyTable;
-Object.keys(proxyTable).forEach(function (context) {
+Object.keys(CONFIG_DEV.proxyTable).forEach(function (context) {
   var options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
@@ -31,10 +29,7 @@ Object.keys(proxyTable).forEach(function (context) {
 });
 
 app.use(require('connect-history-api-fallback')({
-  rewrites: [
-    { from: /\/home(\/|$)/, to: '/home.html' },
-    { from: /\/mobile(\/|$)/, to: '/mobile.html' },
-  ]
+  rewrites: CONFIG_DEV.rewrites
 }));
 
 app.use(devMiddleware);
@@ -49,18 +44,13 @@ setTimeout(() => {
   devMiddleware.invalidate();
 }, 1000);
 
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory);
-app.use(staticPath, express.static('./' + config.dev.assetsFileDirectory));
+app.use('/' + CONFIG_DEV.assetsPublicPath, express.static(CONFIG_DEV.assetsFileDirectory));
 
-var pathUrl = require('../base.config/config').pathUrl;
-
-module.exports = app.listen(config.dev.port, function (err) {
+module.exports = app.listen(CONFIG_DEV.port, function (err) {
   console.log('---------------------------------------------------------------')
   if (err) {
     console.log(err);
     return
   }
-  console.log(`${pathUrl}home\n`);
-
-  // opn(pathUrl + 'm/index')
+  console.log(CONFIG_DEV.url);
 })

@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ValidateLogin from '@/components/ValidateLogin';
 
 // class Index extends React.Component {
 //   constructor () {
@@ -21,8 +22,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 //   }
 // };
 const routers = (
-  <Router>
-  </Router>
+  <ValidateLogin>
+    <Router>
+    </Router>
+  </ValidateLogin>
 );
 
 export default routers;

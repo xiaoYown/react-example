@@ -1,10 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const fs = require('fs');
-// const utils = require('./utils');
-const config = require('../base.config');
-
-let isPro = process.env.NODE_ENV == 'production';
 
 function getEntries(folder) {
   let views = fs.readdirSync(folder);
@@ -18,14 +14,27 @@ let entries = getEntries('./src/pages'); // 获得入口js文件
 
 module.exports = {
   entry: entries,
-  output: {
-    path: config.build.assetsRoot,
-    // [name] 替换成chunk名称， [hash] 替换成对应chunk 的 hash 值, 解决hash的方式: 静态资源引入采用 import 方式
-    filename: '[name].js', // 使用chunkhash : '[name]-[hash].js'
-    publicPath: isPro ? config.build.assetsPublicPath : config.dev.assetsPublicPath // 文件引入路径
-  },
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: 'css-loader',
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
+      },
       {
         test: /\.js[x]?$/,
         exclude: /node_modules/,
@@ -57,25 +66,6 @@ module.exports = {
           path.join(__dirname, '../src')
         ],
         exclude: /(node_modules)|(assets\/js)/
-      },
-      {
-        test: /\.scss$/,
-        use: [{
-          loader: !isPro ? 'style-loader' : MiniCssExtractPlugin.loader,
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
-        }]
       }
     ]
   },

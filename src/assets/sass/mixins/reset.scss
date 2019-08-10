@@ -34,13 +34,13 @@ input, textarea, select, button {
 	-moz-appearance: none;
 	appearance: none;
 }
-section {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none
-}
+// section {
+//   -moz-user-select: none;
+//   -webkit-user-select: none;
+//   -ms-user-select: none;
+//   -o-user-select: none;
+//   user-select: none
+// }
 
 article, aside, dialog, figure, footer, header, menu, nav, section {
 	display: block;

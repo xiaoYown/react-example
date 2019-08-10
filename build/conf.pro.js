@@ -2,18 +2,20 @@ const path = require('path');
 const utils = require('./utils');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const config = require('../base.config');
-const baseWebpack = require('./webpack.config.js');
+const CONFIG_PRO = require('../config.pro');
+const CONFIG_APP = require('../config.app');
+const baseWebpack = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const package = require('../package.json');
+
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 
 const BANNER =
-`[name].js v ${package.version}
-Date: ${config.build.time}
-Author: ${package.author}`;
+`[name].js v ${CONFIG_APP.version}
+Date: ${CONFIG_APP.time}
+Author: ${CONFIG_APP.author}`;
 
 
 var plugins = [
@@ -21,19 +23,18 @@ var plugins = [
     banner: BANNER
   }),
   new webpack.DefinePlugin({
-    'process.env': config.build.env
+    'process.env': 'production'
   }),
   new MiniCssExtractPlugin({
-    filename: utils.assetsPath(`css/[name].css?t=${config.build.time}`),
-    chunkFilename: utils.assetsPath(`css/[id].css?t=${config.build.time}`)
+    filename: utils.assetsPath(`css/[name].css?t=${CONFIG_PRO.time}`),
+    chunkFilename: utils.assetsPath(`css/[id].css?t=${CONFIG_PRO.time}`)
   }),
   new BundleAnalyzerPlugin()
 ];
-Object.keys(baseWebpack.entry).forEach(function(name){
+Object.keys(baseWebpack.entry).forEach(name => {
   var plugin = new HtmlWebpackPlugin({
     filename: path.resolve(__dirname, `../dist/${name}.html`),
     template: path.resolve(__dirname, `../src/htmls/${name}.ejs`),
-    favicon: config.build.favicon,
     inject: true,
     chunks: ['vendor', name], 		// 多文件打包引入
     chunksSortMode: 'dependency',
@@ -49,10 +50,10 @@ Object.keys(baseWebpack.entry).forEach(function(name){
 var newWebpack = merge(baseWebpack, {
   mode: 'production',
   output: {
-    path: config.build.assetsRoot,
-    filename: utils.assetsPath(`js/[name].js?t=${config.build.time}`),
-    chunkFilename: utils.assetsPath(`js/chunks/[name].js?t=${config.build.time}`),
-    publicPath: config.build.assetsPublicPath
+    path: CONFIG_PRO.assetsRoot,
+    filename: utils.assetsPath(`js/[name].js?t=${CONFIG_PRO.time}`),
+    chunkFilename: utils.assetsPath(`js/chunks/[name].js?t=${CONFIG_PRO.time}`),
+    publicPath: CONFIG_PRO.assetsPublicPath
   },
   plugins: plugins,
   optimization: {
@@ -70,10 +71,6 @@ var newWebpack = merge(baseWebpack, {
           name: 'vendor',
           chunks: 'all',
         },
-        default: {
-          test: /node_modules/,
-          minChunks: 2,
-        }
       },
     }
   },

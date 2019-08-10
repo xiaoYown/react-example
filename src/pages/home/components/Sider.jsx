@@ -4,33 +4,18 @@ import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 
 class CmpSider extends React.Component {
-  state = {
-    mode: 'inline',
-    theme: 'light'
-  };
-
   render () {
-    const arr = [];
-    for (let i = 9; i < 29; i++) {
-      arr.push(i);
-    }
     return (
       <Sider
         collapsible
         style={{
-          overflow: 'auto',
-          position: 'fixed',
-          left: 0,
-          top: 0,
-          bottom: 0,
-          paddingBottom: 0,
           backgroundColor: '#fff'
         }}
       >
         <div className="logo" />
         <Menu
-          theme={ this.state.theme }
-          mode={ this.state.inline }
+          theme="light"
+          mode="inline"
           defaultSelectedKeys={['4']}
         >
           <Menu.Item key="1">
@@ -65,14 +50,6 @@ class CmpSider extends React.Component {
             <Icon type="shop" />
             <span className="nav-text">nav 8</span>
           </Menu.Item>
-          {
-            arr.map(index => {
-              return <Menu.Item key={ index }>
-                <Icon type="shop" />
-                <span className="nav-text">nav { index }</span>
-              </Menu.Item>;
-            })
-          }
         </Menu>
       </Sider>
     );

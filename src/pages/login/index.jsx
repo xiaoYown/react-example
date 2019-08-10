@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Input, Form } from 'antd';
 import { isLogin, redirectQuery } from '@/utils';
+import { Input, Form } from 'antd';
 import '@/assets/sass/login/main.scss';
 
 class Login extends React.Component {

@@ -1,10 +1,20 @@
 import React from 'react';
+import AsyncComponent from '@/components/AsyncComponent';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ValidateLogin from '@/components/ValidateLogin';
 import store from '@/store/home';
-import CmpLayout from './components/Layout';
-import ViewIndex from './views/index/index';
+
+const ViewIndex = AsyncComponent((resolve) => {
+  require.ensure([], () => {
+    resolve(require('./views/index/index'));
+  }, 'home-view-index');
+});
+const CmpLayout = AsyncComponent((resolve) => {
+  require.ensure([], () => {
+    resolve(require('./components/Layout'));
+  }, 'layout');
+});
 
 class StoreWrapper extends React.Component {
   constructor () {

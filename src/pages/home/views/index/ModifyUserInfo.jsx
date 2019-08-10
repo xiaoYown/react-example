@@ -11,21 +11,33 @@ class ModifyUserInfo extends React.Component {
     const { getFieldDecorator } = this.props.form;
     const { name, age, job } = this.props.user;
     return <Form>
-      <Form.Item label="name">
+      <Form.Item
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 18 }}
+        label="name"
+      >
         {
           getFieldDecorator('name', {
             initialValue: name
           })(<Input name="name" onChange={(e, val) => this.changing(e, val)} />)
         }
       </Form.Item>
-      <Form.Item label="age">
+      <Form.Item
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 18 }}
+        label="age"
+      >
         {
           getFieldDecorator('age', {
             initialValue: age
           })(<Input name="age" onChange={(e, val) => this.changing(e, val)} />)
         }
       </Form.Item>
-      <Form.Item label="job">
+      <Form.Item
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 18 }}
+        label="job"
+      >
         {
           getFieldDecorator('job', {
             initialValue: job

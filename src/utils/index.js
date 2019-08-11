@@ -44,13 +44,18 @@ export function redirectQuery (key, defaultUrl, method) {
 export function isLogin () {
   return !!window.sessionStorage.getItem('name');
 }
+// 获取登录地址
+export function getLoginUrl () {
+  const backUrl = encodeURIComponent(window.location.href);
+  return `/react/login?back_url=${backUrl}`;
+}
 // 登录
 export function login (_backUrl) {
   const backUrl = encodeURIComponent(_backUrl || window.location.href);
-  window.location.replace(`/login?back_url=${backUrl}`);
+  window.location.replace(`/react/login?back_url=${backUrl}`);
 }
 // 登出
 export function logout () {
   window.sessionStorage.removeItem('name');
-  window.location.replace('/login');
+  window.location.replace('/react/login');
 }

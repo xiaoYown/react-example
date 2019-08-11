@@ -9,7 +9,8 @@ class ModifyUserInfo extends React.Component {
 
   render () {
     const { getFieldDecorator } = this.props.form;
-    const { name, age, job } = this.props.user;
+    const { disabled, user } = this.props;
+    const { name, age, job } = user;
     return <Form>
       <Form.Item
         labelCol={{ span: 4 }}
@@ -19,7 +20,7 @@ class ModifyUserInfo extends React.Component {
         {
           getFieldDecorator('name', {
             initialValue: name
-          })(<Input name="name" onChange={(e, val) => this.changing(e, val)} />)
+          })(<Input disabled={disabled} name="name" onChange={(e, val) => this.changing(e, val)} />)
         }
       </Form.Item>
       <Form.Item
@@ -30,7 +31,7 @@ class ModifyUserInfo extends React.Component {
         {
           getFieldDecorator('age', {
             initialValue: age
-          })(<Input name="age" onChange={(e, val) => this.changing(e, val)} />)
+          })(<Input disabled={disabled} name="age" onChange={(e, val) => this.changing(e, val)} />)
         }
       </Form.Item>
       <Form.Item
@@ -41,7 +42,7 @@ class ModifyUserInfo extends React.Component {
         {
           getFieldDecorator('job', {
             initialValue: job
-          })(<Input name="job" onChange={(e, val) => this.changing(e, val)} />)
+          })(<Input disabled={disabled} name="job" onChange={(e, val) => this.changing(e, val)} />)
         }
       </Form.Item>
     </Form>;

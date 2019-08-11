@@ -1,48 +1,49 @@
 import React from 'react';
 import AsyncComponent from '@/components/AsyncComponent';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import ValidateLogin from '@/components/ValidateLogin';
-import store from '@/store/home';
 
 const ViewIndex = AsyncComponent((resolve) => {
   require.ensure([], () => {
     resolve(require('./views/index/index'));
   }, 'home-view-index');
 });
-const CmpLayout = AsyncComponent((resolve) => {
+const ViewCenter = AsyncComponent((resolve) => {
   require.ensure([], () => {
-    resolve(require('./components/Layout'));
-  }, 'layout');
+    resolve(require('./views/center/index'));
+  }, 'home-view-center');
+});
+const ViewLogin = AsyncComponent((resolve) => {
+  require.ensure([], () => {
+    resolve(require('../login/LoginComponent'));
+  }, 'home-view-login');
 });
 
-class StoreWrapper extends React.Component {
-  constructor () {
-    super();
-    this.state = {
-      navs: []
-    };
-  }
-
-  render () {
-    return <Provider store={ store }>
-      <div>
-        <CmpLayout>
-          { this.props.children }
-        </CmpLayout>
-      </div>
-    </Provider>;
-  }
-};
-
-const routers = (
-  <ValidateLogin>
-    <Router>
-      <StoreWrapper>
-        <Route exact path="/home" component={ ViewIndex }/>
-      </StoreWrapper>
-    </Router>
-  </ValidateLogin>
-);
+const routers = [{
+  path: '/react/home',
+  component: ViewIndex,
+  exact: true,
+  hasWrapper: true, // 是否有 side + header
+  login: true, // 是否需要验证登录
+  loginOther: true // 登录是否需要跳转其他页面
+}, {
+  path: '/react/home/center',
+  component: ViewCenter,
+  exact: true,
+  hasWrapper: true,
+  login: true,
+  loginOther: true
+}, {
+  path: '/react/home/no_login',
+  component: () => <div>This page do not need login.</div>,
+  exact: true,
+  hasWrapper: true
+}, {
+  path: '/react/home/no_wrapper',
+  component: () => <div>This page without wrapper and do not need login.</div>,
+  exact: true
+}, {
+  path: '/react/home/login',
+  component: ViewLogin,
+  exact: true
+}];
 
 export default routers;

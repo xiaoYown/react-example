@@ -16,6 +16,7 @@ const CONFIG = {
   timeStamp: BUILD_TIME.time,
 
   templateSuffix: 'ejs',
+  templateFileSuffix: 'ejs',
   templatePath: path.resolve(__dirname, `./src/htmls`),
   assetsRoot: path.resolve(__dirname, './dist'),
   assetsFileDirectory: 'static/react', // 文件生成到 dist 下的路径

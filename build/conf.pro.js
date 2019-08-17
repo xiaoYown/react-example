@@ -5,7 +5,7 @@ const merge = require('webpack-merge');
 const CONFIG_PRO = require('../config.pro');
 const baseWebpack = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -28,11 +28,11 @@ var plugins = [
     filename: utils.assetsPath(`css/[name].css?t=${CONFIG_PRO.timeStamp}`),
     chunkFilename: utils.assetsPath(`css/[id].css?t=${CONFIG_PRO.timeStamp}`)
   }),
-  new BundleAnalyzerPlugin()
+  // new BundleAnalyzerPlugin()
 ];
 Object.keys(baseWebpack.entry).forEach(name => {
-  var plugin = new HtmlWebpackPlugin({
-    filename: path.resolve(CONFIG_PRO.assetsRoot, `${name}.html`),
+  let plugin = new HtmlWebpackPlugin({
+    filename: path.resolve(CONFIG_PRO.assetsRoot, `${name}.${CONFIG_PRO.templateFileSuffix}`),
     template: path.resolve(__dirname, `../src/htmls/${name}.${CONFIG_PRO.templateSuffix}`),
     inject: true,
     chunks: ['vendor', name], 		// 多文件打包引入

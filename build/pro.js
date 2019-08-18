@@ -43,8 +43,7 @@ webpack(webpackMerge, function (err, stats) {
       let viewPath = path.join(CONFIG_PRO.assetsRoot, fileName);
       cp('-R', viewPath, path.join(CONFIG_PRO.viewsFolder, fileName))
     });
-    mkdir(CONFIG_PRO.staticFolder);
     // copy static source
-    cp('-R', CONFIG_PRO.assetsFileDirectory + '/', CONFIG_PRO.staticFolder);
+    cp('-R', path.join(CONFIG_PRO.assetsRoot, CONFIG_PRO.assetsFileDirectory), CONFIG_PRO.staticFolder);
   }
 });

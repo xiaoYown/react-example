@@ -1,9 +1,10 @@
 require('shelljs/global'); // can replace unix shell scripts on nodejs
 
 const path = require('path');
-const CONFIG_DEV = require('../config.pro');
+const CONFIG_PRO = require('../config.pro');
 const ora =	require('ora');
 const webpack =	require('webpack');
+const entries = require('./entries');
 
 let webpackMerge = require('./conf.pro');
 
@@ -18,11 +19,11 @@ let webpackMerge = require('./conf.pro');
 let spinner = ora('building for production...');
 spinner.start();
 
-let assetsPath = path.join(CONFIG_DEV.assetsRoot, CONFIG_DEV.assetsFileDirectory);
+let assetsPath = path.join(CONFIG_PRO.assetsRoot, CONFIG_PRO.assetsFileDirectory);
 
-rm('-rf', CONFIG_DEV.assetsRoot);
+rm('-rf', CONFIG_PRO.assetsRoot);
 mkdir('-p', assetsPath);
-cp('-R', CONFIG_DEV.assetsFileDirectory + '/', path.join(assetsPath, '../'));
+cp('-R', CONFIG_PRO.assetsFileDirectory + '/', path.join(assetsPath, '../'));
 
 webpack(webpackMerge, function (err, stats) {
   spinner.stop();
@@ -34,4 +35,16 @@ webpack(webpackMerge, function (err, stats) {
     chunks: false,
     chunkModules: false
   }) + '\n');
+  if (CONFIG_PRO.takeToProject) {
+    mkdir(CONFIG_PRO.viewsFolder);
+    // copy template
+    Object.keys(entries).forEach(page => {
+      let fileName = `${page}.${CONFIG_PRO.templateFileSuffix}`;
+      let viewPath = path.join(CONFIG_PRO.assetsRoot, fileName);
+      cp('-R', viewPath, path.join(CONFIG_PRO.viewsFolder, fileName))
+    });
+    mkdir(CONFIG_PRO.staticFolder);
+    // copy static source
+    cp('-R', CONFIG_PRO.assetsFileDirectory + '/', CONFIG_PRO.staticFolder);
+  }
 });

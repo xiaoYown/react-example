@@ -1,16 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const fs = require('fs');
-
-function getEntries(folder) {
-  let views = fs.readdirSync(folder);
-  let entries = {};
-  views.forEach(view => {
-    entries[view] = [`${folder}/${view}/index.jsx`];
-  });
-  return entries;
-}
-let entries = getEntries('./src/pages'); // 获得入口js文件
+const entries = require('./entries');
 
 module.exports = {
   entry: entries,

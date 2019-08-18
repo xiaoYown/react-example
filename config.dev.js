@@ -19,7 +19,7 @@ const CONFIG = {
     { from: /\/react\/login(\/|$)/, to: '/login.html' },
     { from: /\/react\/mobile(\/|$)/, to: '/mobile.html' },
   ],
-  proxyTable: { // 请求代理 -
+  proxyTable: { // 请求代理
     // '/api':{
     //   target: domain,
     //   pathRewrite:{

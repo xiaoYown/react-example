@@ -1,11 +1,11 @@
-import 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import routers from './routers';
+import RoutersWrapper from './routers-wrapper';
 
 import '@/assets/sass/home/main.scss';
 
 render(
-  routers,
+  <RoutersWrapper />,
   document.getElementById('g-home')
 );
 

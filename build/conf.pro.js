@@ -3,28 +3,27 @@ const utils = require('./utils');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CONFIG_PRO = require('../config.pro');
-const CONFIG_APP = require('../config.app');
 const baseWebpack = require('./webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'production';
 
 const BANNER =
-`[name].js v ${CONFIG_APP.version}
-Date: ${CONFIG_APP.time}
-Author: ${CONFIG_APP.author}`;
+`[name].js v ${CONFIG_PRO.version}
+Date: ${CONFIG_PRO.timeStamp}
+Author: ${CONFIG_PRO.author}`;
 
 
 var plugins = [
   new webpack.BannerPlugin({
     banner: BANNER
   }),
-  new webpack.DefinePlugin({
-    'process.env': 'production'
-  }),
+  // new webpack.DefinePlugin({
+  //   'process.env': 'production'
+  // }),
   new MiniCssExtractPlugin({
     filename: utils.assetsPath(`css/[name].css?t=${CONFIG_PRO.timeStamp}`),
     chunkFilename: utils.assetsPath(`css/[id].css?t=${CONFIG_PRO.timeStamp}`)
@@ -32,8 +31,8 @@ var plugins = [
   // new BundleAnalyzerPlugin()
 ];
 Object.keys(baseWebpack.entry).forEach(name => {
-  var plugin = new HtmlWebpackPlugin({
-    filename: path.resolve(CONFIG_PRO.assetsRoot, `${name}.html`),
+  let plugin = new HtmlWebpackPlugin({
+    filename: path.resolve(CONFIG_PRO.assetsRoot, `${name}.${CONFIG_PRO.templateFileSuffix}`),
     template: path.resolve(__dirname, `../src/htmls/${name}.${CONFIG_PRO.templateSuffix}`),
     inject: true,
     chunks: ['vendor', name], 		// 多文件打包引入
@@ -57,22 +56,27 @@ var newWebpack = merge(baseWebpack, {
   },
   plugins: plugins,
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: false
-        }
-      })
-    ],
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router)[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-      },
-    }
+    // minimizer: [
+    //   new UglifyJsPlugin({
+    //     uglifyOptions: {
+    //       compress: false
+    //     }
+    //   })
+    // ],
+    // splitChunks: { // TODO: 该分离方式影响异步模块加载, 暂时移除
+    //   cacheGroups: {
+    //     vendor: {
+    //       test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router)[\\/]/,
+    //       name: 'react',
+    //       chunks: 'all',
+    //     },
+    //     antd: {
+    //       test: /[\\/]node_modules[\\/](antd)[\\/]/,
+    //       name: 'antd',
+    //       chunks: 'all',
+    //     },
+    //   },
+    // }
   },
 });
 

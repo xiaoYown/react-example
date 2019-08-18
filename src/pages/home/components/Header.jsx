@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { PageHeader, Tag, Tabs, Button, Statistic, Row, Col } from 'antd';
-
-const { TabPane } = Tabs;
+import { PageHeader, Tag, Row, Col } from 'antd';
 
 const Description = ({ term, list, span = 12 }) => (
   <Col span={span}>

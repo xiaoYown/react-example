@@ -20,7 +20,7 @@ Object.keys(baseWebpack.entry).forEach(function(name){
   baseWebpack.entry[name].push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true');
 
   let plugin = new HtmlWebpackPlugin({
-    filename: name + '.html',
+    filename: name + `.${CONFIG_DEV.templateFileSuffix}`,
     template: path.join(CONFIG_DEV.templatePath, `${name}.${CONFIG_DEV.templateSuffix}`), // page entries
     inject: true,
     chunks: [name]

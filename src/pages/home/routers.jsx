@@ -1,21 +1,9 @@
 import React from 'react';
 import AsyncComponent from '@/components/AsyncComponent';
 
-const ViewIndex = AsyncComponent((resolve) => {
-  require.ensure([], () => {
-    resolve(require('./views/index/index'));
-  }, 'home-view-index');
-});
-const ViewCenter = AsyncComponent((resolve) => {
-  require.ensure([], () => {
-    resolve(require('./views/center/index'));
-  }, 'home-view-center');
-});
-const ViewLogin = AsyncComponent((resolve) => {
-  require.ensure([], () => {
-    resolve(require('../login/LoginComponent'));
-  }, 'home-view-login');
-});
+const ViewIndex = AsyncComponent(() => import(/* webpackChunkName: "home-view-index" */ './views/index/index'));
+const ViewCenter = AsyncComponent(() => import(/* webpackChunkName: "home-view-center" */ './views/center/index'));
+const ViewLogin = AsyncComponent(() => import(/* webpackChunkName: "home-view-login" */ '../login/LoginComponent'));
 
 const routers = [{
   path: '/react/home',

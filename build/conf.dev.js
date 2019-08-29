@@ -4,6 +4,7 @@ const merge =	require('webpack-merge');
 const HtmlWebpackPlugin =	require('html-webpack-plugin');
 const baseWebpack =	require('./webpack.config');
 const CONFIG_DEV = require('../config.dev');
+const DashboardPlugin = require("webpack-dashboard/plugin");
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
@@ -13,7 +14,8 @@ var plugins = [
   }),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new DashboardPlugin()
 ];
 
 Object.keys(baseWebpack.entry).forEach(function(name){
@@ -30,6 +32,7 @@ Object.keys(baseWebpack.entry).forEach(function(name){
 
 var newWebpack = merge(baseWebpack, {
   mode: 'development',
+  stats: 'minimal',
   output: {
     filename: '[name].js',
     publicPath: '/'

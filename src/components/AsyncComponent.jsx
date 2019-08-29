@@ -9,12 +9,14 @@ const asyncComponent = loadComponent => (
       };
     }
 
-    componentWillMount() { // eslint-disable-line
+    componentWillMount () { // eslint-disable-line
       if (this.hasLoadedComponent()) {
         return;
       }
-      loadComponent(module => {
+      loadComponent().then(module => {
         this.setState({ Component: module.default });
+      }).catch(err => {
+        console.log('loading chunk err: ' + err);
       });
     }
 

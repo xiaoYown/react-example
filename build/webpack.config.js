@@ -14,26 +14,38 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(\.scss)|(\.css)$/,
+        test: /\.(sc|sa|c)ss$/,
         use: [{
-          loader: 'cache-loader'
-        }, {
           loader: process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-          options: {
-            sourceMap: true
-          }
+          options: { sourceMap: true }
+        }, {
+          loader: 'cache-loader',
         }, {
           loader: 'css-loader',
+          options: { sourceMap: true }
+        }, {
+          loader: 'postcss-loader',
           options: {
-            sourceMap: true
+            sourceMap: true,
+            plugins: [
+              require('postcss-import')(),
+            ]
           }
         }, {
           loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
+          options: { sourceMap: true }
         }]
       },
+      // {
+      //   test: /\.(sc|sa|c)ss$/,
+      //   use: [
+      //     {
+      //       loader: process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //       options: { sourceMap: true }
+      //     },
+      //     'happypack/loader?id=css'
+      //   ]
+      // },
       // {
       //   test: /\.js[x]?$/,
       //   exclude: /node_modules/,
@@ -96,11 +108,40 @@ module.exports = {
         }
       ],
     }),
+    // new HappyPack({
+    //   id: 'css',
+    //   threadPool: happyThreadPool,
+    //   loaders: [
+    //     {
+    //       loader: 'cache-loader',
+    //     }, {
+    //       loader: 'css-loader',
+    //       options: { sourceMap: true }
+    //     }, {
+    //       loader: 'postcss-loader',
+    //       options: {
+    //         sourceMap: true,
+    //         plugins: [
+    //           require('postcss-import')(),
+    //         ]
+    //       }
+    //     }, {
+    //       loader: 'sass-loader',
+    //       options: { sourceMap: true }
+    //     }
+    //   ],
+    // }),
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '../src'),
     },
     extensions: ['.js', '.jsx', '.scss']
+  },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-router-dom': 'ReactRouterDOM',
+    'redux': 'Redux'
   }
 };

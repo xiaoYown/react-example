@@ -31,5 +31,8 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <% for (var i = 0; i < externals.length; i++) { %>
+      <script src="<%= CDN + '/' + externals[i] %>.js"></script>
+    <% } %>
   </body>
 </html>

@@ -26,6 +26,12 @@ const CONFIG = {
     //     '^/api': ''
     //   }
     // }
+  },
+  CDN: '/static/react/js/libs',
+  externals: {
+    home: ['react', 'react-dom', 'react-router-dom', 'redux'],
+    login: ['react', 'react-dom', 'react-router-dom'],
+    mobile: ['react', 'react-dom', 'react-router-dom'],
   }
 }
 

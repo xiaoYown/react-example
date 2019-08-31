@@ -25,7 +25,11 @@ Object.keys(baseWebpack.entry).forEach(function(name){
     filename: name + `.${CONFIG_DEV.templateFileSuffix}`,
     template: path.join(CONFIG_DEV.templatePath, `${name}.${CONFIG_DEV.templateSuffix}`), // page entries
     inject: true,
-    chunks: [name]
+    chunks: [name],
+    templateParameters: {
+      CDN: CONFIG_DEV.CDN,
+      externals: CONFIG_DEV.externals[name]
+    }
   });
   plugins.push(plugin);
 });

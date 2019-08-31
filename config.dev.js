@@ -1,7 +1,7 @@
 const path = require('path');
 const utils = require('./build/utils');
 
-const IP = utils.getIPAdress()
+const IP = utils.getIPAdress() || '127.0.0.1';
 const PORT = 8012;
 
 const CONFIG = {
@@ -26,6 +26,12 @@ const CONFIG = {
     //     '^/api': ''
     //   }
     // }
+  },
+  CDN: '/static/react/js/libs',
+  externals: {
+    home: ['react', 'react-dom', 'react-router-dom', 'redux'],
+    login: ['react', 'react-dom', 'react-router-dom'],
+    mobile: ['react', 'react-dom', 'react-router-dom'],
   }
 }
 

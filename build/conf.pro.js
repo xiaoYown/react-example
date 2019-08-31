@@ -42,6 +42,10 @@ Object.keys(baseWebpack.entry).forEach(name => {
       removeComments: true,
       collapseWhitespace: true,
       removeAttributeQuotes: true
+    },
+    templateParameters: {
+      CDN: CONFIG_PRO.CDN,
+      externals: CONFIG_PRO.externals[name]
     }
   });
   plugins.push(plugin);

@@ -6,11 +6,7 @@ import ValidateRoute from '@/components/ValidateRoute';
 import store from '@/store/home';
 import routers from './routers';
 
-const CmpLayout = AsyncComponent((resolve) => {
-  require.ensure([], () => {
-    resolve(require('./components/Layout'));
-  }, 'layout');
-});
+const CmpLayout = AsyncComponent(() => import(/* webpackChunkName: "layout" */ './components/Layout'));
 
 class StoreWrapper extends React.Component {
   constructor () {

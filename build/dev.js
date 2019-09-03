@@ -13,18 +13,12 @@ var app = express();
 var compiler = webpack(smp.wrap(webpackMerge));
 
 compiler.plugin("done", params => {
-  console.log('---------------------------------------------------------------')
-  console.log(CONFIG_DEV.url);
+  console.log(`open your browser: ${CONFIG_DEV.url}\n`);
 });
 
 var devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: '/',
-  stats: {
-    colors: true,
-    chunks: false,
-    modules: false,
-    version: false
-  }
+  stats: 'minimal'
 });
 // proxy api requests
 Object.keys(CONFIG_DEV.proxyTable).forEach(function (context) {

@@ -5,6 +5,7 @@ const HtmlWebpackPlugin =	require('html-webpack-plugin');
 const baseWebpack =	require('./webpack.config');
 const CONFIG_DEV = require('../config.dev');
 const DashboardPlugin = require("webpack-dashboard/plugin");
+const ExternalsPlugin = require('./xv-webpack-externals-plugin');
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
@@ -34,9 +35,15 @@ Object.keys(baseWebpack.entry).forEach(function(name){
   plugins.push(plugin);
 });
 
+// plugins.push(new ExternalsPlugin({
+//   cdn: '/static/react/js/libs',
+//   externals: {
+//     home: ['test'],
+//   }
+// }));
+
 var newWebpack = merge(baseWebpack, {
   mode: 'development',
-  stats: 'minimal',
   output: {
     filename: '[name].js',
     publicPath: '/'

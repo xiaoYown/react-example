@@ -2,8 +2,8 @@ const path = require('path');
 const HappyPack = require('happypack');
 const os = require('os');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const entries = require('./entries');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const entries = require('./entries');
 
 // 开辟一个线程池
 // 拿到系统CPU的最大核数，happypack 将编译工作灌满所有线程
@@ -47,16 +47,6 @@ module.exports = {
       //   ]
       // },
       // {
-      //   test: /\.js[x]?$/,
-      //   exclude: /node_modules/,
-      //   use: [{
-      //     loader: 'babel-loader?cacheDirectory',
-      //     options: {
-      //       presets: ['react'],
-      //       plugins: ['transform-runtime']
-      //     }
-      //   }]
-      // },
       {
         test: /\.js[x]?$/,
         exclude: /node_modules/,
